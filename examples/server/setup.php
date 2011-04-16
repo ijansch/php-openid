@@ -474,13 +474,13 @@ function getOpenIDStore()
     switch ($_SESSION['store_type']) {
     case "Filesystem":
 
-        print "require_once \"Auth/OpenID/FileStore.php\";\n    ";
+        print "require_once \"Auth/OpenID/Stores/FileStore.php\";\n    ";
         print "return new Auth_OpenID_FileStore(\"".$_SESSION['store_data']['fs_path']."\");\n";
         break;
 
     case "SQLite":
 
-        print "require_once \"Auth/OpenID/SQLiteStore.php\";\n    ";
+        print "require_once \"Auth/OpenID/Stores/SQLiteStore.php\";\n    ";
         print "\$s = new Auth_OpenID_SQLiteStore(\"".$_SESSION['store_data']['sqlite_path']."\");\n    ";
         print "\$s->createTables();\n    ";
         print "return \$s;\n";
@@ -488,7 +488,7 @@ function getOpenIDStore()
 
     case "MySQL":
 
-        ?>require_once 'Auth/OpenID/MySQLStore.php';
+        ?>require_once 'Auth/OpenID/Stores/MySQLStore.php';
     require_once 'DB.php';
 
     $dsn = array(
@@ -505,7 +505,7 @@ function getOpenIDStore()
     }
 
     $db->query("USE <?php print $_SESSION['store_data']['database']; ?>");
-        
+
     $s =& new Auth_OpenID_MySQLStore($db);
 
     $s->createTables();
@@ -516,7 +516,7 @@ function getOpenIDStore()
 
     case "PostgreSQL":
 
-        ?>require_once 'Auth/OpenID/PostgreSQLStore.php';
+        ?>require_once 'Auth/OpenID/Stores/PostgreSQLStore.php';
     require_once 'DB.php';
 
     $dsn = array(
