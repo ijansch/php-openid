@@ -16,7 +16,7 @@
 /**
  * @access private
  */
-require_once 'Auth/OpenID/Interface.php';
+require_once 'Auth/OpenID/Stores/Interface.php';
 require_once 'Auth/OpenID/Nonce.php';
 
 /**
@@ -54,7 +54,7 @@ require_once 'Auth/OpenID/Nonce.php';
  *
  * @package OpenID
  */
-class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
+class Auth_OpenID_SQLStore implements Auth_OpenID_OpenIDStore {
 
     /**
      * This creates a new SQLStore instance.  It requires an
