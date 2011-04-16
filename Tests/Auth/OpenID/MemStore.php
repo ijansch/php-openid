@@ -3,7 +3,7 @@
 /**
  * In-memory OpenID store implementation for testing only
  */
-require_once "Auth/OpenID/Interface.php";
+require_once "Auth/OpenID/Stores/Interface.php";
 require_once 'Auth/OpenID/Nonce.php';
 
 class ServerAssocs {
