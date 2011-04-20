@@ -18,7 +18,7 @@
  * uses. It is a single class that provides all of the persistence
  * mechanisms that the OpenID library needs, for both servers and
  * consumers.  If you want to create an SQL-driven store, please see
- * then {@link Auth_OpenID_SQLStore} class.
+ * then {@link Auth_OpenID_Store_SQLStore} class.
  *
  * Change: Version 2.0 removed the storeNonce, getAuthKey, and isDumb
  * methods, and changed the behavior of the useNonce method to support
@@ -27,7 +27,7 @@
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
  */
-interface Auth_OpenID_OpenIDStore {
+interface Auth_OpenID_Store_OpenIDStore {
     /**
      * This method puts an Association object into storage,
      * retrievable by server URL and handle.

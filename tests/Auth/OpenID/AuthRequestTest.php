@@ -1,7 +1,5 @@
 <?php
-require_once('../../Common.php');
-
-require_once 'Auth/OpenID/T_Utils.php';
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 require_once 'Auth/OpenID/Association.php';
 require_once 'Auth/OpenID/Consumer.php';

@@ -1,5 +1,5 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * Tests for the BigMath functions.
@@ -15,7 +15,7 @@ require_once('../../Common.php');
  */
 
 require_once 'Auth/OpenID/BigMath.php';
-require_once 'Auth/OpenID/T_Utils.php';
+
 
 class Tests_Auth_OpenID_BinLongConvertRnd extends PHPUnit_Framework_TestCase {
     var $lib;

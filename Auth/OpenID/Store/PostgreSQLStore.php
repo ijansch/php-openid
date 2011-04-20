@@ -16,7 +16,7 @@ require_once "Auth/OpenID/Stores/SQLStore.php";
  *
  * @package OpenID
  */
-class Auth_OpenID_PostgreSQLStore extends Auth_OpenID_SQLStore {
+class Auth_OpenID_Store_PostgreSQLStore extends Auth_OpenID_Store_SQLStore {
     /**
      * @access private
      */

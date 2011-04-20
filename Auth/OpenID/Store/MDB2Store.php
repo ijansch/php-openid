@@ -18,7 +18,7 @@ require_once 'MDB2.php';
 /**
  * @access private
  */
-require_once 'Auth/OpenID/Stores/Interface.php';
+require_once 'Auth/OpenID/Store/Interface.php';
 
 /**
  * @access private
@@ -43,7 +43,7 @@ require_once 'Auth/OpenID/Nonce.php';
  *
  * @package OpenID
  */
-class Auth_OpenID_MDB2Store implements Auth_OpenID_OpenIDStore {
+class Auth_OpenID_Store_MDB2Store implements Auth_OpenID_Store_OpenIDStore {
     /**
      * This creates a new MDB2Store instance.  It requires an
      * established database connection be given to it, and it allows
@@ -62,7 +62,7 @@ class Auth_OpenID_MDB2Store implements Auth_OpenID_OpenIDStore {
      * the name of the table used for storing nonces.  The default
      * value is 'oid_nonces'.
      */
-    function Auth_OpenID_MDB2Store($connection,
+    function Auth_OpenID_Store_MDB2Store($connection,
                                   $associations_table = null,
                                   $nonces_table = null)
     {
@@ -73,7 +73,7 @@ class Auth_OpenID_MDB2Store implements Auth_OpenID_OpenIDStore {
         // database connection.
         if (!is_object($connection) ||
             !is_subclass_of($connection, 'mdb2_driver_common')) {
-            trigger_error("Auth_OpenID_MDB2Store expected PEAR connection " .
+            trigger_error("Auth_OpenID_Store_MDB2Store expected PEAR connection " .
                           "object (got ".get_class($connection).")",
                           E_USER_ERROR);
             return;

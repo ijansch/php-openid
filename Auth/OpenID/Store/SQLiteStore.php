@@ -16,7 +16,7 @@ require_once "Auth/OpenID/Stores/SQLStore.php";
  *
  * @package OpenID
  */
-class Auth_OpenID_SQLiteStore extends Auth_OpenID_SQLStore {
+class Auth_OpenID_Store_SQLiteStore extends Auth_OpenID_Store_SQLStore {
     function setSQL()
     {
         $this->sql['nonce_table'] =

@@ -69,9 +69,9 @@
  * store interface is defined in Interface.php.  Additionally, several
  * concrete store implementations are provided, so that most sites
  * won't need to implement a custom store.  For a store backed by flat
- * files on disk, see {@link Auth_OpenID_FileStore}.  For stores based
+ * files on disk, see {@link Auth_OpenID_Store_FileStore}.  For stores based
  * on MySQL, SQLite, or PostgreSQL, see the {@link
- * Auth_OpenID_SQLStore} subclasses.
+ * Auth_OpenID_Store_SQLStore} subclasses.
  *
  * Upgrading
  *
@@ -1653,11 +1653,11 @@ class Auth_OpenID_UntrustedReturnURL extends Auth_OpenID_ServerError {
  * Auth_OpenID_SigningEncoder::encode()} through my methods {@link
  * decodeRequest} and {@link encodeResponse}.
  *
- * All my state is encapsulated in an {@link Auth_OpenID_OpenIDStore}.
+ * All my state is encapsulated in an {@link Auth_OpenID_Store_OpenIDStore}.
  *
  * Example:
  *
- * <pre> $oserver = new Auth_OpenID_Server(Auth_OpenID_FileStore($data_path),
+ * <pre> $oserver = new Auth_OpenID_Server(Auth_OpenID_Store_FileStore($data_path),
  *                                   "http://example.com/op");
  * $request = $oserver->decodeRequest();
  * if (in_array($request->mode, array('checkid_immediate',

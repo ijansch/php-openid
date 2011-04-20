@@ -18,7 +18,7 @@
 /**
  * Import the interface for creating a new store class.
  */
-require_once 'Auth/OpenID/Stores/Interface.php';
+require_once 'Auth/OpenID/Store/Interface.php';
 
 /**
  * This is a memcached-based store for OpenID associations and
@@ -33,15 +33,15 @@ require_once 'Auth/OpenID/Stores/Interface.php';
  *
  * @package OpenID
  */
-class Auth_OpenID_MemcachedStore implements  Auth_OpenID_OpenIDStore {
+class Auth_OpenID_Store_MemcachedStore implements  Auth_OpenID_Store_OpenIDStore {
 
     /**
-     * Initializes a new {@link Auth_OpenID_MemcachedStore} instance.
+     * Initializes a new {@link Auth_OpenID_Store_MemcachedStore} instance.
      * Just saves memcached object as property.
      *
      * @param resource connection Memcache connection resourse
      */
-    function Auth_OpenID_MemcachedStore($connection, $compress = false)
+    function Auth_OpenID_Store_MemcachedStore($connection, $compress = false)
     {
         $this->connection = $connection;
         $this->compress = $compress ? MEMCACHE_COMPRESSED : 0;

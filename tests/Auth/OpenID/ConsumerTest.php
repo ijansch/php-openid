@@ -1,5 +1,5 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * Tests for the OpenID consumer.
@@ -24,7 +24,7 @@ require_once 'Auth/OpenID/Server.php';
 require_once 'Auth/OpenID/Nonce.php';
 require_once 'Auth/OpenID/SReg.php';
 require_once 'Auth/OpenID/Message.php';
-require_once 'Auth/OpenID/MemStore.php';
+require_once 'Auth/OpenID/Store/MemStore.php';
 
 /*
  * Convenience function to create a SuccessResponse with the given
@@ -273,7 +273,7 @@ class Tests_Auth_OpenID_Consumer extends PHPUnit_Framework_TestCase {
             $_Auth_OpenID_user_page_pat,
             $_Auth_OpenID_assocs;
 
-        $store = new Tests_Auth_OpenID_MemStore();
+        $store = new Auth_OpenID_Store_MemStore();
 
         if ($immediate) {
             $mode = 'checkid_immediate';
@@ -375,7 +375,7 @@ class _TestIdRes extends PHPUnit_Framework_TestCase {
 
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $cl = $this->consumer_class;
         $this->consumer = new $cl($this->store);
         $this->return_to = "http://some.host/path";
@@ -639,7 +639,7 @@ class GoodAssociation {
     }
 }
 
-class GoodAssocStore extends Tests_Auth_OpenID_MemStore {
+class GoodAssocStore extends Auth_OpenID_Store_MemStore {
     function getAssociation($server_url, $handle = null)
     {
         return new GoodAssociation();
@@ -1522,7 +1522,7 @@ class _BadArgCheckingConsumer extends Auth_OpenID_GenericConsumer {
 class Tests_Auth_OpenID_Consumer_TestCheckAuth extends _TestIdRes {
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->consumer = new Auth_OpenID_GenericConsumer($this->store);
         $this->fetcher = new _MockFetcher();
         $this->consumer->fetcher =& $this->fetcher;
@@ -1611,7 +1611,7 @@ class Tests_Auth_OpenID_Consumer_TestCheckAuth extends _TestIdRes {
 class Tests_Auth_OpenID_Consumer_TestFetchAssoc extends PHPUnit_Framework_TestCase {
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->fetcher = new _MockFetcher();
         $this->consumer = new Auth_OpenID_GenericConsumer($this->store);
         $this->consumer->fetcher =& $this->fetcher;

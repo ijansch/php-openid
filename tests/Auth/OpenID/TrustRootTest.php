@@ -1,12 +1,12 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * Tests for the TrustRoot module
  */
 
 require_once "Auth/OpenID/TrustRoot.php";
-require_once "Auth/OpenID/T_Utils.php";
+
 
 class Tests_Auth_OpenID_TRParseCase extends PHPUnit_Framework_TestCase {
     function Tests_Auth_OpenID_TRParseCase($desc, $case, $expected)

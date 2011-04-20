@@ -1,9 +1,9 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 
-require_once "Auth/OpenID/T_Utils.php";
-require_once "Auth/OpenID/MemStore.php";
+
+require_once "Auth/OpenID/Store/MemStore.php";
 
 require_once "Auth/OpenID/Message.php";
 require_once "Auth/OpenID/Consumer.php";
@@ -31,7 +31,7 @@ class _DiscoverAndVerify extends OpenIDTestMixin {
 
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $cl = $this->consumer_class;
         $this->consumer = new $cl($this->store);
         $this->return_to = "http://some.host/path";
@@ -331,7 +331,7 @@ class Tests_openID2MismatchedDoesDisco_failure extends PHPUnit_Framework_TestCas
 
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $cl = $this->consumer_class;
         $this->consumer = new $cl($this->store);
         $this->return_to = "http://some.host/path";
@@ -377,7 +377,7 @@ class TestVerifyDiscoverySingle extends OpenIDTestMixin {
 
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $cl = $this->consumer_class;
         $this->consumer = new $cl($this->store);
         $this->return_to = "http://some.host/path";

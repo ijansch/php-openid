@@ -76,7 +76,7 @@ function &getStore() {
             " Please check the effective permissions.";
         exit(0);
     }
-	$r = new Auth_OpenID_FileStore($store_path);
+	$r = new Auth_OpenID_Store_FileStore($store_path);
 
     return $r;
 }

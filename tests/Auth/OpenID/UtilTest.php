@@ -1,5 +1,5 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * Tests for utility functions used by the OpenID library.

@@ -1,5 +1,5 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * Tests for the Consumer parsing functions.
@@ -14,7 +14,7 @@ require_once('../../Common.php');
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once 'Auth/OpenID/T_Utils.php';
+
 require_once 'Auth/OpenID/Parse.php';
 
 class Tests_Auth_OpenID_Link extends PHPUnit_Framework_TestCase {

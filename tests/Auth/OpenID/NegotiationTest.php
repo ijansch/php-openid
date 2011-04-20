@@ -1,8 +1,8 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
-require_once "Auth/OpenID/T_Utils.php";
-require_once "Auth/OpenID/MemStore.php";
+
+require_once "Auth/OpenID/Store/MemStore.php";
 
 require_once "Auth/OpenID/Message.php";
 require_once "Auth/OpenID/Consumer.php";

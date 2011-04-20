@@ -1,5 +1,5 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /*
  * Unit tests for verification of return_to URLs for a realm.

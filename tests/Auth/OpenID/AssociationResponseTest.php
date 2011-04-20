@@ -1,8 +1,8 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
-require_once "Auth/OpenID/T_Utils.php";
-require_once "Auth/OpenID/MemStore.php";
+
+require_once "Auth/OpenID/Store/MemStore.php";
 
 require_once "Auth/OpenID/Message.php";
 require_once "Auth/OpenID/Server.php";
@@ -42,7 +42,7 @@ function mkAssocResponse($keys)
 class Tests_Auth_OpenID_AssociationResponse extends PHPUnit_Framework_TestCase {
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->consumer = new Auth_OpenID_GenericConsumer($this->store);
         $this->endpoint = new Auth_OpenID_ServiceEndpoint();
     }
@@ -127,7 +127,7 @@ class DummyAssocationSession {
 }
 
 class ExtractAssociationSessionTypeMismatch extends Tests_Auth_OpenID_AssociationResponse {
-    function _run($requested_session_type, $response_session_type, $openid1=false)
+    function _run2($requested_session_type, $response_session_type, $openid1=false)
     {
         global $association_response_values;
 
@@ -148,42 +148,42 @@ class ExtractAssociationSessionTypeMismatch extends Tests_Auth_OpenID_Associatio
 
     function test_typeMismatchNoEncBlank_openid2()
     {
-        $this->_run('no-encryption', '');
+        $this->_run2('no-encryption', '');
     }
 
     function test_typeMismatchDHSHA1NoEnc_openid2()
     {
-        $this->_run('DH-SHA1', 'no-encryption');
+        $this->_run2('DH-SHA1', 'no-encryption');
     }
 
     function test_typeMismatchDHSHA256NoEnc_openid2()
     {
-        $this->_run('DH-SHA256', 'no-encryption');
+        $this->_run2('DH-SHA256', 'no-encryption');
     }
 
     function test_typeMismatchNoEncDHSHA1_openid2()
     {
-        $this->_run('no-encryption', 'DH-SHA1');
+        $this->_run2('no-encryption', 'DH-SHA1');
     }
 
     function test_typeMismatchDHSHA1NoEnc_openid1()
     {
-        $this->_run('DH-SHA1', 'DH-SHA256', true);
+        $this->_run2('DH-SHA1', 'DH-SHA256', true);
     }
 
     function test_typeMismatchDHSHA256NoEnc_openid1()
     {
-        $this->_run('DH-SHA256', 'DH-SHA1', true);
+        $this->_run2('DH-SHA256', 'DH-SHA1', true);
     }
 
     function test_typeMismatchNoEncDHSHA1_openid1()
     {
-        $this->_run('no-encryption', 'DH-SHA1', true);
+        $this->_run2('no-encryption', 'DH-SHA1', true);
     }
 }
 
 class TestOpenID1AssociationResponseSessionType extends Tests_Auth_OpenID_AssociationResponse {
-    function _run($expected_session_type, $session_type_value)
+    function _run2($expected_session_type, $session_type_value)
     {
         // Create a Message with just 'session_type' in it, since
         // that's all this function will use. 'session_type' may be
@@ -208,22 +208,22 @@ class TestOpenID1AssociationResponseSessionType extends Tests_Auth_OpenID_Associ
 
     function test_none()
     {
-        $this->_run('no-encryption', null);
+        $this->_run2('no-encryption', null);
     }
 
     function test_empty()
     {
-        $this->_run('no-encryption', '');
+        $this->_run2('no-encryption', '');
     }
 
     function test_explicitNoEncryption()
     {
-        $this->_run('no-encryption', 'no-encryption');
+        $this->_run2('no-encryption', 'no-encryption');
     }
 
     function test_dhSHA1()
     {
-        $this->_run('DH-SHA1', 'DH-SHA1');
+        $this->_run2('DH-SHA1', 'DH-SHA1');
     }
 
     // DH-SHA256 is not a valid session type for OpenID1, but this
@@ -233,7 +233,7 @@ class TestOpenID1AssociationResponseSessionType extends Tests_Auth_OpenID_Associ
     // 2
     function test_dhSHA256()
     {
-        $this->_run('DH-SHA256', 'DH-SHA256');
+        $this->_run2('DH-SHA256', 'DH-SHA256');
     }
 }
 

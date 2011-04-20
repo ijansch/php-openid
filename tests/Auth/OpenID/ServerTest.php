@@ -1,11 +1,11 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * Tests for Auth_OpenID_Server
  */
 
-require_once "Auth/OpenID/MemStore.php";
+require_once "Auth/OpenID/Store/MemStore.php";
 require_once "Auth/OpenID.php";
 require_once "Auth/OpenID/DiffieHellman.php";
 require_once "Auth/OpenID/Server.php";
@@ -198,7 +198,7 @@ class Tests_Auth_OpenID_Test_Decode extends PHPUnit_Framework_TestCase {
         $this->claimed_id = 'http://de.legating.de.coder.unittest/';
         $this->op_endpoint = 'http://endpoint.unittest/encode';
 
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->server = new Auth_OpenID_Server($this->store,
                                                $this->op_endpoint);
         $this->decoder = new Auth_OpenID_Decoder($this->server);
@@ -640,7 +640,7 @@ class Tests_Auth_OpenID_Test_Encode extends PHPUnit_Framework_TestCase {
         $this->encoder = new Auth_OpenID_Encoder();
         $this->encode = $this->encoder;
         $this->op_endpoint = 'http://endpoint.unittest/encode';
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->server = new Auth_OpenID_Server($this->store,
                                                $this->op_endpoint);
     }
@@ -867,7 +867,7 @@ class Tests_Auth_OpenID_SigningEncode extends PHPUnit_Framework_TestCase {
     function setUp()
     {
         // Use filestore here instead of memstore
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
 
         $this->op_endpoint = 'http://endpoint.unittest/encode';
 
@@ -994,7 +994,7 @@ class Tests_Auth_OpenID_SigningEncode extends PHPUnit_Framework_TestCase {
 class Tests_Auth_OpenID_CheckID extends PHPUnit_Framework_TestCase {
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
 
         $this->op_endpoint = 'http://endpoint.unittest/encode';
 
@@ -1489,7 +1489,7 @@ class Tests_Auth_OpenID_CheckIDExtension extends PHPUnit_Framework_TestCase {
     function setUp()
     {
         $this->op_endpoint = 'http://endpoint.unittest/ext';
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->server = new Auth_OpenID_Server($this->store, $this->op_endpoint);
         $this->request = new Auth_OpenID_CheckIDRequest(
             'http://bambam.unittest/',
@@ -1651,7 +1651,7 @@ class Tests_Auth_OpenID_Associate extends PHPUnit_Framework_TestCase {
     {
         $message = new Auth_OpenID_Message(Auth_OpenID_OPENID1_NS);
         $this->request = Auth_OpenID_AssociateRequest::fromMessage($message);
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->signatory = new Auth_OpenID_Signatory($this->store);
     }
 
@@ -2034,7 +2034,7 @@ class Counter {
 class Tests_Auth_OpenID_ServerTest extends PHPUnit_Framework_TestCase {
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->server = new Auth_OpenID_Server($this->store);
     }
 
@@ -2149,7 +2149,7 @@ class Tests_Auth_OpenID_ServerTest extends PHPUnit_Framework_TestCase {
 class Tests_Auth_OpenID_Signatory extends PHPUnit_Framework_TestCase {
     function setUp()
     {
-        $this->store = new Tests_Auth_OpenID_MemStore();
+        $this->store = new Auth_OpenID_Store_MemStore();
         $this->signatory = new Auth_OpenID_Signatory($this->store);
         $this->dumb_key = $this->signatory->dumb_key;
         $this->normal_key = $this->signatory->normal_key;

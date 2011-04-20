@@ -110,7 +110,7 @@
  * a request to the your site which includes that OpenID URL.
  *
  * First, the application should instantiate the Auth_OpenID_Consumer
- * class using the store of choice (Auth_OpenID_FileStore or one of
+ * class using the store of choice (Auth_OpenID_Store_FileStore or one of
  * the SQL-based stores).  If the application has a custom
  * session-management implementation, an object implementing the
  * {@link Auth_Yadis_PHPSession} interface should be passed as the
@@ -235,16 +235,16 @@ class Auth_OpenID_Consumer {
      * You should create a new instance of the Consumer object with
      * every HTTP request that handles OpenID transactions.
      *
-     * @param Auth_OpenID_OpenIDStore $store This must be an object
+     * @param Auth_OpenID_Store_OpenIDStore $store This must be an object
      * that implements the interface in {@link
-     * Auth_OpenID_OpenIDStore}.  Several concrete implementations are
+     * Auth_OpenID_Store_OpenIDStore}.  Several concrete implementations are
      * provided, to cover most common use cases.  For stores backed by
      * MySQL, PostgreSQL, or SQLite, see the {@link
-     * Auth_OpenID_SQLStore} class and its sublcasses.  For a
-     * filesystem-backed store, see the {@link Auth_OpenID_FileStore}
+     * Auth_OpenID_Store_SQLStore} class and its sublcasses.  For a
+     * filesystem-backed store, see the {@link Auth_OpenID_Store_FileStore}
      * module.  As a last resort, if it isn't possible for the server
      * to store state at all, an instance of {@link
-     * Auth_OpenID_DumbStore} can be used.
+     * Auth_OpenID_Store_DumbStore} can be used.
      *
      * @param mixed $session An object which implements the interface
      * of the {@link Auth_Yadis_PHPSession} class.  Particularly, this
@@ -597,14 +597,14 @@ class Auth_OpenID_GenericConsumer {
      * This method initializes a new {@link Auth_OpenID_Consumer}
      * instance to access the library.
      *
-     * @param Auth_OpenID_OpenIDStore $store This must be an object
-     * that implements the interface in {@link Auth_OpenID_OpenIDStore}.
+     * @param Auth_OpenID_Store_OpenIDStore $store This must be an object
+     * that implements the interface in {@link Auth_OpenID_Store_OpenIDStore}.
      * Several concrete implementations are provided, to cover most common use
      * cases.  For stores backed by MySQL, PostgreSQL, or SQLite, see
-     * the {@link Auth_OpenID_SQLStore} class and its sublcasses.  For a
-     * filesystem-backed store, see the {@link Auth_OpenID_FileStore} module.
+     * the {@link Auth_OpenID_Store_SQLStore} class and its sublcasses.  For a
+     * filesystem-backed store, see the {@link Auth_OpenID_Store_FileStore} module.
      * As a last resort, if it isn't possible for the server to store
-     * state at all, an instance of {@link Auth_OpenID_DumbStore} can be used.
+     * state at all, an instance of {@link Auth_OpenID_Store_DumbStore} can be used.
      *
      * @param bool $immediate This is an optional boolean value.  It
      * controls whether the library uses immediate mode, as explained

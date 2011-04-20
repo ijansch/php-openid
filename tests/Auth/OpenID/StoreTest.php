@@ -1,5 +1,5 @@
 <?php
-require_once('../../Common.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
 
 /**
  * A test script for the OpenIDStore classes.
@@ -41,7 +41,7 @@ function _Auth_OpenID_mkdtemp()
         }
     }
 
-    return Auth_OpenID_FileStore::_mkdtemp($dir);
+    return Auth_OpenID_Store_FileStore::_mkdtemp($dir);
 }
 
 /**
@@ -413,8 +413,8 @@ explicitly');
 class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
     function test_memstore()
     {
-        require_once 'Auth/OpenID/MemStore.php';
-        $store = new Tests_Auth_OpenID_MemStore();
+        require_once 'Auth/OpenID/Store/MemStore.php';
+        $store = new Auth_OpenID_Store_MemStore();
         $this->_testStore($store);
         $this->_testNonce($store);
         $this->_testNonceCleanup($store);
@@ -428,12 +428,12 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
 
         if (!$temp_dir) {
             trigger_error('Could not create temporary directory ' .
-                          'with Auth_OpenID_FileStore::_mkdtemp',
+                          'with Auth_OpenID_Store_FileStore::_mkdtemp',
                           E_USER_WARNING);
             return null;
         }
 
-        $store = new Auth_OpenID_FileStore($temp_dir);
+        $store = new Auth_OpenID_Store_FileStore($temp_dir);
         $this->_testStore($store);
         $this->_testNonce($store);
         $this->_testNonceCleanup($store);
@@ -516,7 +516,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
             return;
         }
 
-        $store = new Auth_OpenID_PostgreSQLStore($db);
+        $store = new Auth_OpenID_Store_PostgreSQLStore($db);
 
         $this->assertFalse($store->tableExists($store->nonces_table_name));
         $this->assertFalse($store->tableExists($store->associations_table_name));
@@ -575,7 +575,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
 
         if (!$temp_dir) {
             trigger_error('Could not create temporary directory ' .
-                          'with Auth_OpenID_FileStore::_mkdtemp',
+                          'with Auth_OpenID_Store_FileStore::_mkdtemp',
                           E_USER_WARNING);
             return null;
         }
@@ -587,7 +587,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
             $this->pass("SQLite database connection failed: " .
                         $db->getMessage());
         } else {
-            $store = new Auth_OpenID_SQLiteStore($db);
+            $store = new Auth_OpenID_Store_SQLiteStore($db);
             $this->assertTrue($store->createTables(), "Table creation failed");
             $this->_testStore($store);
             $this->_testNonce($store);
@@ -644,7 +644,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
 
         $db->query("USE $temp_db_name");
 
-        $store = new Auth_OpenID_MySQLStore($db);
+        $store = new Auth_OpenID_Store_MySQLStore($db);
         $store->createTables();
         $this->_testStore($store);
         $this->_testNonce($store);
@@ -697,7 +697,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
 
         $db->query("USE $temp_db_name");
 
-        $store =& new Auth_OpenID_MDB2Store($db);
+        $store =& new Auth_OpenID_Store_MDB2Store($db);
         if (!$store->createTables()) {
             $this->fail("Failed to create tables");
             return;
@@ -735,7 +735,7 @@ class Tests_Auth_OpenID_MemcachedStore_Test extends Tests_Auth_OpenID_Store {
             print "(skipping memcache store tests - couldn't connect)";
             $this->pass();
         } else {
-            $store = new Auth_OpenID_MemcachedStore($memcached);
+            $store = new Auth_OpenID_Store_MemcachedStore($memcached);
 
             $this->_testStore($store);
             $this->_testNonce($store);

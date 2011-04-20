@@ -1,10 +1,9 @@
 <?php
-require_once('../../Common.php');
 
 /**
  * In-memory OpenID store implementation for testing only
  */
-require_once "Auth/OpenID/Stores/Interface.php";
+require_once "Auth/OpenID/Store/Interface.php";
 require_once 'Auth/OpenID/Nonce.php';
 
 class ServerAssocs {
@@ -33,7 +32,7 @@ class ServerAssocs {
         }
     }
 
-    /*
+    /**
      * Returns association with the oldest issued date.
      *
      * or null if there are no associations.
@@ -49,7 +48,7 @@ class ServerAssocs {
         return $best;
     }
 
-    /*
+    /**
      * Remove expired associations.
      *
      * @return (removed associations, remaining associations)
@@ -71,14 +70,13 @@ class ServerAssocs {
     }
 }
 
-/*
+/**
  * In-process memory store.
  *
  * Use for single long-running processes.  No persistence supplied.
  */
-class Tests_Auth_OpenID_MemStore extends Auth_OpenID_OpenIDStore {
-    function Tests_Auth_OpenID_MemStore()
-    {
+class Auth_OpenID_Store_MemStore implements Auth_OpenID_Store_OpenIDStore {
+    function __construct() {
         $this->server_assocs = array();
         $this->nonces = array();
     }
@@ -172,6 +170,12 @@ class Tests_Auth_OpenID_MemStore extends Auth_OpenID_OpenIDStore {
 
         return $removed_assocs;
     }
+
+    function cleanup() { return array($this->cleanupAssociations(), $this->cleanupNonces());}
+
+    function supportsCleanup() { return true; }
+    function reset() {}
+
 }
 
 
