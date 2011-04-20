@@ -139,7 +139,7 @@ function Tests_Auth_OpenID_trMatchTests($head, $tests)
 
 function Tests_Auth_OpenID_trustRootTests()
 {
-    $data = Tests_Auth_OpenID_readdata('trustroot.txt');
+    $data = Tests_readdata('trustroot.txt');
     list($parsehead, $matchhead) = Tests_Auth_OpenID_parseHeadings($data, '=');
     $pe = $parsehead['end'];
     $parsedata = substr($data, $pe, $matchhead['start'] - $pe);

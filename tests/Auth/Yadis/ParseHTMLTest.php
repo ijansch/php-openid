@@ -75,7 +75,7 @@ class Tests_Auth_Yadis_ParseHTML extends PHPUnit_Framework_TestSuite {
 
     function Tests_Auth_Yadis_ParseHTML()
     {
-        $test_data = Tests_Auth_Yadis_readdata('test1-parsehtml.txt');
+        $test_data = Tests_readdata('test1-parsehtml.txt');
 
         $test_cases = $this->parseTests($test_data);
 

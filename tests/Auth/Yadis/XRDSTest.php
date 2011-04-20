@@ -20,7 +20,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
                        );
 
         foreach ($files as $filename => $service_count) {
-            $xml = Tests_Auth_Yadis_readdata($filename);
+            $xml = Tests_readdata($filename);
             $xrds = Auth_Yadis_XRDS::parseXRDS($xml);
 
             $this->assertTrue($xrds !== null);
@@ -36,7 +36,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
 
     function test_good_multi()
     {
-        $xml = Tests_Auth_Yadis_readdata("brian.multi.xrds");
+        $xml = Tests_readdata("brian.multi.xrds");
         $xrds = Auth_Yadis_XRDS::parseXRDS($xml);
         $this->assertTrue($xrds !== null);
         $this->assertEquals(count($xrds->services()), 1);
@@ -52,7 +52,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
 
     function test_good_uri_multi()
     {
-        $xml = Tests_Auth_Yadis_readdata("brian.multi_uri.xrds");
+        $xml = Tests_readdata("brian.multi_uri.xrds");
         $xrds = Auth_Yadis_XRDS::parseXRDS($xml);
         $this->assertTrue($xrds !== null);
         $this->assertEquals(1, count($xrds->services()));
@@ -60,7 +60,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
 
     function test_uri_sorting()
     {
-        $xml = Tests_Auth_Yadis_readdata("uri_priority.xrds");
+        $xml = Tests_readdata("uri_priority.xrds");
         $xrds = Auth_Yadis_XRDS::parseXRDS($xml);
         $services = $xrds->services();
         $uris = $services[0]->getURIs();
@@ -109,7 +109,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
         foreach ($canonicalIDtests as $tupl) {
             list($iname, $filename, $expectedID) = $tupl;
 
-            $xml = Tests_Auth_Yadis_readdata($filename);
+            $xml = Tests_readdata($filename);
             $xrds = Auth_Yadis_XRDS::parseXRDS($xml);
             $this->_getCanonicalID($iname, $xrds, $expectedID);
         }
@@ -132,7 +132,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
     {
         // First, just be sure that service objects do the right
         // thing.
-        $xml = Tests_Auth_Yadis_readdata("brian_priority.xrds");
+        $xml = Tests_readdata("brian_priority.xrds");
         $xrds = Auth_Yadis_XRDS::parseXRDS($xml,
                                                array('openid' =>
                                                      'http://openid.net/xmlns/1.0'));
@@ -239,7 +239,7 @@ class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
 
     function test_multisegment_xri()
     {
-        $xml = Tests_Auth_Yadis_readdata('subsegments.xrds');
+        $xml = Tests_readdata('subsegments.xrds');
         $xmldoc = Auth_Yadis_XRDS::parseXRDS($xml);
         $result = Auth_Yadis_getCanonicalId('xri://=nishitani*masaki', $xmldoc);
         $this->assertEquals($result, "xri://=!E117.EF2F.454B.C707!0000.0000.3B9A.CA01");

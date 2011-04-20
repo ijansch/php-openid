@@ -27,7 +27,7 @@ $testlist = array(
 
 function getExampleXRDS()
 {
-    return Tests_Auth_Yadis_readdata('example-xrds.xml');
+    return Tests_readdata('example-xrds.xml');
 }
 
 global $example_xrds;
@@ -41,7 +41,7 @@ $discover_tests = array();
 
 function readTests($filename)
 {
-    $data = Tests_Auth_Yadis_readdata($filename);
+    $data = Tests_readdata($filename);
 
     if ($data === null) {
         return null;

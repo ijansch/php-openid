@@ -28,11 +28,6 @@ class Tests_Auth_OpenID_Link extends PHPUnit_Framework_TestCase {
         $this->parser = new Auth_OpenID_Parse();
     }
 
-    function getName()
-    {
-        return $this->desc;
-    }
-
     function runTest()
     {
         $parsed = $this->parser->parseLinkAttrs($this->markup);
@@ -101,11 +96,6 @@ class NumTestCases extends PHPUnit_Framework_TestCase {
 
 class Tests_Auth_OpenID_Parse extends PHPUnit_Framework_TestSuite {
 
-    function getName()
-    {
-        return "Tests_Auth_OpenID_Parse";
-    }
-
     function _parseCheck($cond, $where)
     {
         if (!$cond) {
@@ -171,7 +161,7 @@ class Tests_Auth_OpenID_Parse extends PHPUnit_Framework_TestSuite {
 
     function Tests_Auth_OpenID_Parse()
     {
-        $test_data = Tests_Auth_OpenID_readdata('linkparse.txt');
+        $test_data = Tests_readdata('linkparse.txt');
 
         list($num_tests, $test_cases) = $this->parseTests($test_data);
 

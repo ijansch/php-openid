@@ -144,7 +144,7 @@ function Tests_Auth_OpenID_maxint()
 class Tests_Auth_OpenID_BigMath extends PHPUnit_Framework_TestSuite {
     function _parseBase64Data()
     {
-        $lines = Tests_Auth_OpenID_readlines('n2b64');
+        $lines = Tests_readlines('n2b64');
 
         $data = array();
         foreach ($lines as $line) {

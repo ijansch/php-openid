@@ -60,7 +60,7 @@ class Tests_Auth_OpenID_HMAC extends PHPUnit_Framework_TestSuite {
 
     function _readTestCases($test_file_name, $digest_len)
     {
-        $lines = Tests_Auth_OpenID_readlines($test_file_name);
+        $lines = Tests_readlines($test_file_name);
         $cases = array();
         $case = array();
         foreach ($lines as $line) {

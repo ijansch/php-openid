@@ -294,7 +294,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
 
         $services = $this->_discover(
                                      'text/html',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid_no_delegate.html'),
+                                     Tests_readdata('test_discover_openid_no_delegate.html'),
                                      1);
 
         $this->_checkService($services[0],
@@ -309,7 +309,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_html1()
     {
         $services = $this->_discover('text/html',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid.html'),
+                                     Tests_readdata('test_discover_openid.html'),
                                      1);
 
 
@@ -329,7 +329,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
      */
     function test_html1Fragment()
     {
-        $data = Tests_Auth_OpenID_readdata('openid.html');
+        $data = Tests_readdata('openid.html');
         $content_type = 'text/html';
         $expected_services = 1;
 
@@ -354,7 +354,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_html2()
     {
         $services = $this->_discover('text/html',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid2.html'),
+                                     Tests_readdata('test_discover_openid2.html'),
                                      1);
 
         $this->_checkService($services[0],
@@ -370,7 +370,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_html1And2()
     {
         $services = $this->_discover('text/html',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid_1_and_2.html'),
+                                     Tests_readdata('test_discover_openid_1_and_2.html'),
                                      2);
 
         $types = array('2.0', '1.1');
@@ -394,7 +394,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadisEmpty()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_yadis_0entries.xml'),
+                                     Tests_readdata('test_discover_yadis_0entries.xml'),
                                      0);
     }
 
@@ -406,10 +406,10 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
         // The XRDS document pointed to by "openid_and_yadis.html"
         $this->fetcher->documents[$this->id_url . 'xrds'] =
             array('application/xrds+xml',
-                  Tests_Auth_OpenID_readdata('test_discover_yadis_0entries.xml'));
+                  Tests_readdata('test_discover_yadis_0entries.xml'));
 
         $services = $this->_discover('text/html',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid_and_yadis.html'),
+                                     Tests_readdata('test_discover_openid_and_yadis.html'),
                                      1);
 
         $this->_checkService($services[0],
@@ -425,7 +425,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadis1NoDelegate()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_yadis_no_delegate.xml'),
+                                     Tests_readdata('test_discover_yadis_no_delegate.xml'),
                                      1);
 
         $this->_checkService(
@@ -442,7 +442,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadis2NoLocalID()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid2_xrds_no_local_id.xml'),
+                                     Tests_readdata('test_discover_openid2_xrds_no_local_id.xml'),
                                      1);
 
         $this->_checkService(
@@ -459,7 +459,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadis2()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid2_xrds.xml'),
+                                     Tests_readdata('test_discover_openid2_xrds.xml'),
                                      1);
 
         $this->_checkService($services[0],
@@ -475,7 +475,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadis2OP()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_yadis_idp.xml'),
+                                     Tests_readdata('test_discover_yadis_idp.xml'),
                                      1);
 
         $this->_checkService($services[0],
@@ -492,7 +492,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     {
         // The delegate tag isn't meaningful for OP entries.
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_yadis_idp_delegate.xml'),
+                                     Tests_readdata('test_discover_yadis_idp_delegate.xml'),
                                      1);
 
         $this->_checkService(
@@ -507,14 +507,14 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadis2BadLocalID()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_yadis_2_bad_local_id.xml'),
+                                     Tests_readdata('test_discover_yadis_2_bad_local_id.xml'),
                                      0);
     }
 
     function test_yadis1And2()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid_1_and_2_xrds.xml'),
+                                     Tests_readdata('test_discover_openid_1_and_2_xrds.xml'),
                                      1);
 
         $this->_checkService(
@@ -530,7 +530,7 @@ class Tests_Auth_OpenID_Discover_OpenID extends _DiscoveryBase {
     function test_yadis1And2BadLocalID()
     {
         $services = $this->_discover('application/xrds+xml',
-                                     Tests_Auth_OpenID_readdata('test_discover_openid_1_and_2_xrds_bad_delegate.xml'),
+                                     Tests_readdata('test_discover_openid_1_and_2_xrds_bad_delegate.xml'),
                                      0);
     }
 }
@@ -592,9 +592,9 @@ class TestXRIDiscovery extends _DiscoveryBase {
         parent::setUp();
 
 	$this->fetcher->documents = array('=smoker' => array('application/xrds+xml',
-							     Tests_Auth_OpenID_readdata('yadis_2entries_delegate.xml')),
+							     Tests_readdata('yadis_2entries_delegate.xml')),
 					  '=smoker*bad' => array('application/xrds+xml',
-								 Tests_Auth_OpenID_readdata('yadis_another_delegate.xml')));
+								 Tests_readdata('yadis_another_delegate.xml')));
     }
 
     function test_xri() {
@@ -713,7 +713,7 @@ class Tests_Auth_OpenID_SSLSupport extends PHPUnit_Framework_TestCase {
 
         $d = array(
                    $id_url => array('application/xrds+xml',
-                                    Tests_Auth_OpenID_readdata('test_discover_openid_ssl.xml'))
+                                    Tests_readdata('test_discover_openid_ssl.xml'))
                    );
 
         $f = new _FetcherWithoutSSL($d);
@@ -740,7 +740,7 @@ class Tests_Auth_OpenID_SSLSupport extends PHPUnit_Framework_TestCase {
 
         $d = array(
                    $id_url => array('application/xrds+xml',
-                                    Tests_Auth_OpenID_readdata('test_discover_openid_ssl.xml'))
+                                    Tests_readdata('test_discover_openid_ssl.xml'))
                    );
 
         $f = new _FetcherWithSSL($d);

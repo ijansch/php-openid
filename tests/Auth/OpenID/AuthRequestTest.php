@@ -145,12 +145,6 @@ class TestAuthRequestOpenID2 extends TestAuthRequestMixin {
         $this->assertEquals($claimed_present, $identity_present);
     }
 
-    function failUnlessHasIdentifiers($msg, $op_specific_id, $claimed_id)
-    {
-        $this->failUnlessOpenIDValueEquals($msg, 'identity', $op_specific_id);
-        $this->failUnlessOpenIDValueEquals($msg, 'claimed_id', $claimed_id);
-    }
-
     // TESTS
 
     function test_markup_checkidImmediate()
