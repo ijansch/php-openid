@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * Tests for the HMAC-SHA1 utility functions used by the OpenID

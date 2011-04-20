@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * Unit tests for the Auth_OpenID_Message implementation.

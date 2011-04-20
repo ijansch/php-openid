@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 require_once "Auth/OpenID/T_Utils.php";
 require_once "Auth/OpenID/MemStore.php";

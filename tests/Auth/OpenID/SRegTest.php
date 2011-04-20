@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * SReg.php testing code.

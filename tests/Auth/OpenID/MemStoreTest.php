@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * In-memory OpenID store implementation for testing only

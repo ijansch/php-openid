@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * Tests for Auth_OpenID_Server

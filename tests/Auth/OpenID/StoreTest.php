@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * A test script for the OpenIDStore classes.

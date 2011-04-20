@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * XRDS-parsing tests for the Yadis library.

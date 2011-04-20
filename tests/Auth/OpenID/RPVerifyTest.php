@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /*
  * Unit tests for verification of return_to URLs for a realm.

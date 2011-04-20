@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 require_once "Auth/Yadis/DiscoverData.php";
 require_once "Auth/Yadis/Yadis.php";

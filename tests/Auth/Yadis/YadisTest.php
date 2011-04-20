@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 /**
  * Tests for the core of the PHP Yadis library.

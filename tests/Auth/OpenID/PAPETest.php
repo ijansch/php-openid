@@ -1,4 +1,5 @@
 <?php
+require_once('../../Common.php');
 
 require_once "Auth/OpenID/PAPE.php";
 require_once "Auth/OpenID/Message.php";
