@@ -1,7 +1,7 @@
 <?php
 
-require_once "Tests/Auth/OpenID/TestUtil.php";
-require_once "Tests/Auth/OpenID/MemStore.php";
+require_once "Auth/OpenID/T_Utils.php";
+require_once "Auth/OpenID/MemStore.php";
 
 require_once "Auth/OpenID/Message.php";
 require_once "Auth/OpenID/Server.php";

@@ -1,6 +1,6 @@
 <?php
 
-require_once "Tests/Auth/Yadis/DiscoverData.php";
+require_once "Auth/Yadis/DiscoverData.php";
 require_once "Auth/Yadis/Yadis.php";
 require_once "Auth/Yadis/HTTPFetcher.php";
 

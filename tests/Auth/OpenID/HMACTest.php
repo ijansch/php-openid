@@ -15,7 +15,7 @@
  */
 
 require_once 'Auth/OpenID/HMAC.php';
-require_once 'Tests/Auth/OpenID/TestUtil.php';
+require_once 'Auth/OpenID/T_Utils.php';
 
 class Tests_Auth_OpenID_HMAC_TestCase extends PHPUnit_Framework_TestCase {
     function Tests_Auth_OpenID_HMAC_TestCase(

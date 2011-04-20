@@ -4,7 +4,7 @@
  * Tests for Auth_OpenID_Server
  */
 
-require_once "Tests/Auth/OpenID/MemStore.php";
+require_once "Auth/OpenID/MemStore.php";
 require_once "Auth/OpenID.php";
 require_once "Auth/OpenID/DiffieHellman.php";
 require_once "Auth/OpenID/Server.php";

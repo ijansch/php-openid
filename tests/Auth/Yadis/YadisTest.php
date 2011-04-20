@@ -5,7 +5,7 @@
  */
 
 require_once 'Auth/Yadis/Yadis.php';
-require_once 'Tests/Auth/Yadis/TestUtil.php';
+require_once 'Auth/Yadis/T_Utils.php';
 
 class Tests_Auth_Yadis_DiscoveryTest extends PHPUnit_Framework_TestCase {
 

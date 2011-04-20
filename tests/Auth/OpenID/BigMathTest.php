@@ -14,7 +14,7 @@
  */
 
 require_once 'Auth/OpenID/BigMath.php';
-require_once 'Tests/Auth/OpenID/TestUtil.php';
+require_once 'Auth/OpenID/T_Utils.php';
 
 class Tests_Auth_OpenID_BinLongConvertRnd extends PHPUnit_Framework_TestCase {
     var $lib;

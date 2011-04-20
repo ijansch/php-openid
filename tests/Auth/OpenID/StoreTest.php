@@ -412,7 +412,7 @@ explicitly');
 class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
     function test_memstore()
     {
-        require_once 'Tests/Auth/OpenID/MemStore.php';
+        require_once 'Auth/OpenID/MemStore.php';
         $store = new Tests_Auth_OpenID_MemStore();
         $this->_testStore($store);
         $this->_testNonce($store);

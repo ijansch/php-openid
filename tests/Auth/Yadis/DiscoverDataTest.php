@@ -1,7 +1,7 @@
 <?php
 
 require_once "Auth/Yadis/Yadis.php";
-require_once "Tests/Auth/Yadis/TestUtil.php";
+require_once "Auth/Yadis/T_Utils.php";
 
 global $testlist;
 $testlist = array(

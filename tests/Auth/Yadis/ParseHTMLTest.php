@@ -13,7 +13,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once 'Tests/Auth/Yadis/TestUtil.php';
+require_once 'Auth/Yadis/T_Utils.php';
 require_once 'Auth/Yadis/ParseHTML.php';
 
 class Tests_Auth_Yadis_ParseTest extends PHPUnit_Framework_TestCase {

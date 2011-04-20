@@ -7,7 +7,7 @@
 require_once 'Auth/Yadis/XRDS.php';
 require_once 'Auth/Yadis/XRIRes.php';
 require_once 'Auth/Yadis/XRI.php';
-require_once 'Tests/Auth/Yadis/TestUtil.php';
+require_once 'Auth/Yadis/T_Utils.php';
 
 class Tests_Auth_Yadis_XRDS extends PHPUnit_Framework_TestCase {
 

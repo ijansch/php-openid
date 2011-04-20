@@ -122,7 +122,7 @@ function global_require_once($name)
 
 $_tests = array(
                 array(
-                      'dir' => 'Tests/Auth/OpenID/',
+                      'dir' => 'Auth/OpenID/',
                       'files' => array(
                                        'Association',
                                        'AssociationResponse',
@@ -152,7 +152,7 @@ $_tests = array(
                                        'VerifyDisco'),
                       ),
                 array(
-                      'dir' => 'Tests/Auth/Yadis/',
+                      'dir' => 'Auth/Yadis/',
                       'files' => array(
                                        'ParseHTML',
                                        'XRDS',

@@ -23,7 +23,7 @@ require_once 'Auth/OpenID/Server.php';
 require_once 'Auth/OpenID/Nonce.php';
 require_once 'Auth/OpenID/SReg.php';
 require_once 'Auth/OpenID/Message.php';
-require_once 'Tests/Auth/OpenID/MemStore.php';
+require_once 'Auth/OpenID/MemStore.php';
 
 /*
  * Convenience function to create a SuccessResponse with the given

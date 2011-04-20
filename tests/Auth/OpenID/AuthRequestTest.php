@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Tests/Auth/OpenID/TestUtil.php';
+require_once 'Auth/OpenID/T_Utils.php';
 
 require_once 'Auth/OpenID/Association.php';
 require_once 'Auth/OpenID/Consumer.php';
