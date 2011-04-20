@@ -1,6 +1,4 @@
-
-PHP OpenID
-----------
+h1. PHP OpenID
 
 This is the PHP OpenID library by JanRain, Inc.  You can visit our
 website for more information about this package and other OpenID
@@ -8,62 +6,59 @@ implementations and tools:
 
   http://www.openidenabled.com/
 
-GETTING STARTED
-===============
+h2. GETTING STARTED
 
 First, run the 'examples/detect.php' script either from the command
 line or via the web.  It will generate a report of any system
 configuration changes necessary to run the library.
 
-INSTALLATION
-============
 
-You will need PHP 4.3.0 or greater to use this library.  We have
-tested the library Linux on PHP 4.3.0, 4.4.1, 5.0.5, and 5.1.1.  We
-have tested the library on Windows XP on PHP 4.4.4.
+h2. INSTALLATION
 
-Follow these steps:
+h3. dependencies
 
-1. Install dependencies.
+h4. php
 
-   - Enable either the GMP extension or Bcmath extension. (GMP is
-     STRONGLY recommended because it's MUCH faster!)  This is
-     required.
+You will need PHP 5.0.0 or greater to use this library. 
+JanRain has tested the library Linux on PHP 5.0.5, and 5.1.1. JanRain
+has tested the library on Windows XP on PHP 4.4.4.
+I have tested with PHP 5.3.4
 
-   - Enable the CURL extension.
+h4. Required libraries
 
-   - If you plan to use SQLite, PostgreSQL, or MySQL to store OpenID
-     data, you'll need PEAR DB.  You can install this by running this
-     as root:
+* Enable either the GMP extension or Bcmath extension. (GMP is STRONGLY
+recommended because it's MUCH faster!)  This is required.
+* Enable the CURL extension.
+* Install DOM extension ( provided in PHP core since X.Y.Z )
 
-     # pear install DB
+h4. Optional libraries
 
-     You'll also need to install and enable the appropriate PHP
-     database extension.  Alternatively, you can store OpenID data on
-     the filesystem instead of using a relational database.  Nothing
-     special is required for using the filesystem method.
+* If you plan to use SQLite, PostgreSQL, or MySQL to store OpenIDdata,
+you can use PEAR DB or MDB2 and the approriate extension.
 
-   - Install either the DOM or domxml PHP XML processing extension,
-     but not both (they are incompatible).
+* If you plan to use Memcache compliant database to store OpenID data,
+you can use memcache or memcached extension.
 
-2. Copy the Auth/ directory into your PHP include path.
+h3. Installation process
 
-TESTING YOUR SETUP
-==================
+h4. brute installation 
+
+* Copy the Auth/ directory into your PHP include path.
+
+
+h2. TESTING YOUR SETUP
 
 You can use the example code to test your setup.  To run the example
 consumer or server, follow the instructions in the examples/README
 file.
 
-USING THE API
-=============
+h2. USING THE API
 
 The best way to get started using the API is to take a look at the
 example consumer and server in the examples/ directory.  See the
 examples/README file for more details.
 
-TROUBLESHOOTING
-===============
+h2. TROUBLESHOOTING
 
 * If you're unable to use an OpenID URL with the library, you may want
 to try using the discover tool (examples/discover.php).  This tool
@@ -95,16 +90,14 @@ recompile PHP with OpenSSL support or install the appropriate OpenSSL
 module for your platform.  If you are using CURL, CURL will need to be
 built with OpenSSL support.
 
-GETTING HELP
-============
+h2. GETTING HELP
 
 If you have any questions, recommendations, or patches, please tell
 us!  Subscribe to our OpenID development discussion list at
 
   http://openid.net/developers/dev-mailing-lists/
 
-DOCUMENTATION
-=============
+h2. DOCUMENTATION
 
 You can view the HTML library documentation in the doc/ directory.
 
@@ -114,23 +107,22 @@ Phpdoc lives at:
 
   http://www.phpdoc.org/
 
-CONTRIBUTING
-============
+h2. CONTRIBUTING
 
 If you have a bugfix or feature you'd like to contribute, don't
-hesitate to send it to us.  Post your patch to the development list at
+hesitate to send it to us.  Post your patch to issues section at
 
-  http://openid.net/developers/dev-mailing-lists/
+  https://github.com/mouns/php-openid
 
 For more detailed information on how to contribute, see
 
   http://openidenabled.com/contribute/
 
-To run the test suite included with this package, install PHPUnit 1.x
+To run the test suite included with this package, install PHPUnit 3.5
 and run
 
   php admin/texttest.php
 
-PHPUnit 1.x can be found at
+PHPUnit 3.5 can be found at
 
   http://pear.phpunit.de/get/
