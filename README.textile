@@ -6,14 +6,14 @@ their package and other OpenID implementations and tools:
 
   http://www.openidenabled.com/
 
-h2. GETTING STARTED
+h2. Getting Started
 
 First, run the 'examples/detect.php' script either from the command
 line or via the web.  It will generate a report of any system
 configuration changes necessary to run the library.
 
 
-h2. INSTALLATION
+h2. Installation
 
 h3. dependencies
 
@@ -46,19 +46,38 @@ h4. brute installation
 * Copy the Auth/ directory into your PHP include path.
 
 
-h2. TESTING YOUR SETUP
+h2. Testing Your Setup
 
 You can use the example code to test your setup.  To run the example
 consumer or server, follow the instructions in the examples/README
 file.
 
-h2. USING THE API
+h2. Using The API
 
 The best way to get started using the API is to take a look at the
 example consumer and server in the examples/ directory.  See the
 examples/README file for more details.
 
-h2. TROUBLESHOOTING
+h2. Documentation
+
+You can view the HTML library documentation in the doc/ directory.
+
+This package's documentation is in PhpDoc format.  To generate the
+documentation, install phpdoc and run the admin/makedoc.sh script.
+Phpdoc lives at:
+
+  http://www.phpdoc.org/
+
+h3. Development Environment Setup
+
+Janrain note: You'll need to run these commands to generate
+documentation for this project:
+
+* @apt-get install php5-pear@
+* @pear install PhpDocumentor@
+
+
+h2. Troubleshootings
 
 * If you're unable to use an OpenID URL with the library, you may want
 to try using the discover tool (examples/discover.php).  This tool
@@ -90,24 +109,14 @@ recompile PHP with OpenSSL support or install the appropriate OpenSSL
 module for your platform.  If you are using CURL, CURL will need to be
 built with OpenSSL support.
 
-h2. GETTING HELP
+h2. Getting Help
 
 If you have any questions, recommendations, or patches, please tell
 us!  Subscribe to our OpenID development discussion list at
 
   https://github.com/mouns/php-openid/issues
 
-h2. DOCUMENTATION
-
-You can view the HTML library documentation in the doc/ directory.
-
-This package's documentation is in PhpDoc format.  To generate the
-documentation, install phpdoc and run the admin/makedoc.sh script.
-Phpdoc lives at:
-
-  http://www.phpdoc.org/
-
-h2. CONTRIBUTING
+h2. Contributing
 
 If you have a bugfix or feature you'd like to contribute, don't
 hesitate to send it to us.  Post your patch to issues section at
