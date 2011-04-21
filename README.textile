@@ -1,8 +1,8 @@
 h1. PHP OpenID
 
-This is the PHP OpenID library by JanRain, Inc.  You can visit our
-website for more information about this package and other OpenID
-implementations and tools:
+This is a forked PHP OpenID library from PHP OpenID library by JanRain, Inc.
+You can visit their website for more information about
+their package and other OpenID implementations and tools:
 
   http://www.openidenabled.com/
 
@@ -29,7 +29,7 @@ h4. Required libraries
 * Enable either the GMP extension or Bcmath extension. (GMP is STRONGLY
 recommended because it's MUCH faster!)  This is required.
 * Enable the CURL extension.
-* Install DOM extension ( provided in PHP core since X.Y.Z )
+* Enable DOM extension ( provided in PHP core since PHP 5.0.0 )
 
 h4. Optional libraries
 
@@ -78,7 +78,7 @@ over bcmath (for performance), you will have to define
 Auth_OpenID_BUGGY_GMP in your application *before* importing any of
 the library code:
 
-  define('Auth_OpenID_BUGGY_GMP', true);
+  @ define('Auth_OpenID_BUGGY_GMP', true); @
 
 * Not all PHP installations support SSL.  You can find out if yours
 supports SSL by reading the "HTTP Fetching" section of the output of
@@ -95,7 +95,7 @@ h2. GETTING HELP
 If you have any questions, recommendations, or patches, please tell
 us!  Subscribe to our OpenID development discussion list at
 
-  http://openid.net/developers/dev-mailing-lists/
+  https://github.com/mouns/php-openid/issues
 
 h2. DOCUMENTATION
 
