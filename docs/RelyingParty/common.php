@@ -26,12 +26,12 @@ function doIncludes() {
     /**
      * Require the Simple Registration extension API.
      */
-    require_once "Auth/OpenID/SReg.php";
+    require_once "Auth/OpenID/Extension/SReg.php";
 
     /**
      * Require the PAPE extension module.
      */
-    require_once "Auth/OpenID/PAPE.php";
+    require_once "Auth/OpenID/Extension/PAPE.php";
 }
 
 doIncludes();

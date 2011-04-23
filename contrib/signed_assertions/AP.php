@@ -131,7 +131,7 @@ class AP_OP_StoreRequest
          return null;
       }
       $signedAssertion=$attributeProvider->sign($openid,$attribute,$value);
-      $store_request=new Auth_OpenID_AX_StoreRequest;
+      $store_request=new Auth_OpenID_Extension_AX_StoreRequest;
       $store_request->addValue($attribute,base64_encode($value));
       $store_request->addValue($attribute.'/signature',
                                            base64_encode($signedAssertion));
@@ -157,8 +157,8 @@ class RP_OP_Verify
     */
    function verifyAssertion(&$attributeVerifier,$response)
    {
-      $ax_resp=Auth_OpenID_AX_FetchResponse::fromSuccessResponse($response);
-      if($ax_resp instanceof Auth_OpenID_AX_FetchResponse){
+      $ax_resp=Auth_OpenID_Extension_AX_FetchResponse::fromSuccessResponse($response);
+      if($ax_resp instanceof Auth_OpenID_Extension_AX_FetchResponse){
          $ax_args=$ax_resp->getExtensionArgs();
          if($ax_args) {
             $value=base64_decode($ax_args['value.ext1.1']);

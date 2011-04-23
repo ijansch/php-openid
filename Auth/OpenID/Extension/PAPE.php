@@ -8,9 +8,9 @@
  * http://openid.net/developers/specs/
  */
 
-require_once "Auth/OpenID/Extension.php";
+require_once "Auth/OpenID/Extension/Extension.php";
 
-define('Auth_OpenID_PAPE_NS_URI',
+define('Auth_OpenID_Extension_PAPE_NS_URI',
        "http://specs.openid.net/extensions/pape/1.0");
 
 define('PAPE_AUTH_MULTI_FACTOR_PHYSICAL',
@@ -32,12 +32,12 @@ define('PAPE_TIME_VALIDATOR',
  * max_auth_age: The maximum time, in seconds, that the relying party
  * wants to allow to have elapsed before the user must re-authenticate
  */
-class Auth_OpenID_PAPE_Request extends Auth_OpenID_Extension {
+class Auth_OpenID_Extension_PAPE_Request extends Auth_OpenID_Extension_Extension {
 
     var $ns_alias = 'pape';
-    var $ns_uri = Auth_OpenID_PAPE_NS_URI;
+    var $ns_uri = Auth_OpenID_Extension_PAPE_NS_URI;
 
-    function Auth_OpenID_PAPE_Request($preferred_auth_policies=null,
+    function Auth_OpenID_Extension_PAPE_Request($preferred_auth_policies=null,
                                       $max_auth_age=null)
     {
         if ($preferred_auth_policies === null) {
@@ -84,8 +84,8 @@ class Auth_OpenID_PAPE_Request extends Auth_OpenID_Extension {
      */
     static function fromOpenIDRequest($request)
     {
-        $obj = new Auth_OpenID_PAPE_Request();
-        $args = $request->message->getArgs(Auth_OpenID_PAPE_NS_URI);
+        $obj = new Auth_OpenID_Extension_PAPE_Request();
+        $args = $request->message->getArgs(Auth_OpenID_Extension_PAPE_NS_URI);
 
         if ($args === null || $args === array()) {
             return null;
@@ -156,12 +156,12 @@ class Auth_OpenID_PAPE_Request extends Auth_OpenID_Extension {
  * A Provider Authentication Policy response, sent from a provider to
  * a relying party
  */
-class Auth_OpenID_PAPE_Response extends Auth_OpenID_Extension {
+class Auth_OpenID_Extension_PAPE_Response extends Auth_OpenID_Extension_Extension {
 
     var $ns_alias = 'pape';
-    var $ns_uri = Auth_OpenID_PAPE_NS_URI;
+    var $ns_uri = Auth_OpenID_Extension_PAPE_NS_URI;
 
-    function Auth_OpenID_PAPE_Response($auth_policies=null, $auth_time=null,
+    function Auth_OpenID_Extension_PAPE_Response($auth_policies=null, $auth_time=null,
                                        $nist_auth_level=null)
     {
         if ($auth_policies) {
@@ -192,7 +192,7 @@ class Auth_OpenID_PAPE_Response extends Auth_OpenID_Extension {
     }
 
     /**
-     * Create an Auth_OpenID_PAPE_Response object from a successful
+     * Create an Auth_OpenID_Extension_PAPE_Response object from a successful
      * OpenID library response.
      *
      * @param success_response $success_response A SuccessResponse
@@ -203,10 +203,10 @@ class Auth_OpenID_PAPE_Response extends Auth_OpenID_Extension {
      */
     static function fromSuccessResponse($success_response)
     {
-        $obj = new Auth_OpenID_PAPE_Response();
+        $obj = new Auth_OpenID_Extension_PAPE_Response();
 
         // PAPE requires that the args be signed.
-        $args = $success_response->getSignedNS(Auth_OpenID_PAPE_NS_URI);
+        $args = $success_response->getSignedNS(Auth_OpenID_Extension_PAPE_NS_URI);
 
         if ($args === null || $args === array()) {
             return null;

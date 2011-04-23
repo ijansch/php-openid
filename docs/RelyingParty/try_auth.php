@@ -27,7 +27,7 @@ function run() {
         displayError("Authentication error; not a valid OpenID.");
     }
 
-    $sreg_request = Auth_OpenID_SRegRequest::build(
+    $sreg_request = Auth_OpenID_Extension_SRegRequest::build(
                                      // Required
                                      array('nickname'),
                                      // Optional
@@ -42,7 +42,7 @@ function run() {
     	$policy_uris = $_GET['policies'];
 	}
 
-    $pape_request = new Auth_OpenID_PAPE_Request($policy_uris);
+    $pape_request = new Auth_OpenID_Extension_PAPE_Request($policy_uris);
     if ($pape_request) {
         $auth_request->addExtension($pape_request);
     }

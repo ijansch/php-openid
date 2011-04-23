@@ -5,7 +5,7 @@ require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
  * SReg.php testing code.
  */
 
-require_once 'Auth/OpenID/SReg.php';
+require_once 'Auth/OpenID/Extension/SReg.php';
 require_once 'Auth/OpenID/Message.php';
 require_once 'Auth/OpenID/Server.php';
 
@@ -102,7 +102,7 @@ class GetNSTest extends PHPUnit_Framework_TestCase {
 
     function test_openID2Empty()
     {
-        $ns_uri = Auth_OpenID_SRegBase::_getSRegNS($this->msg);
+        $ns_uri = Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg);
         $this->assertEquals($this->msg->namespaces->getAlias($ns_uri), 'sreg');
         $this->assertEquals(Auth_OpenID_SREG_NS_URI, $ns_uri);
     }
@@ -110,7 +110,7 @@ class GetNSTest extends PHPUnit_Framework_TestCase {
     function test_openID1Empty()
     {
         $this->msg->openid1 = true;
-        $ns_uri = Auth_OpenID_SRegBase::_getSRegNS($this->msg);
+        $ns_uri = Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg);
         $this->assertEquals($this->msg->namespaces->getAlias($ns_uri), 'sreg');
         $this->assertEquals(Auth_OpenID_SREG_NS_URI, $ns_uri);
     }
@@ -119,7 +119,7 @@ class GetNSTest extends PHPUnit_Framework_TestCase {
     {
         $this->msg->openid1 = true;
         $this->msg->namespaces->add(Auth_OpenID_SREG_NS_URI_1_0);
-        $ns_uri = Auth_OpenID_SRegBase::_getSRegNS($this->msg);
+        $ns_uri = Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg);
         $this->assertEquals(Auth_OpenID_SREG_NS_URI_1_0, $ns_uri);
     }
 
@@ -133,7 +133,7 @@ class GetNSTest extends PHPUnit_Framework_TestCase {
 
                     $this->msg->openid1 = $openid_version;
                     $this->assertTrue($this->msg->namespaces->addAlias($sreg_version, $alias) !== null);
-                    $ns_uri = Auth_OpenID_SRegBase::_getSRegNS($this->msg);
+                    $ns_uri = Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg);
                     $this->assertEquals($this->msg->namespaces->getAlias($ns_uri), $alias);
                     $this->assertEquals($sreg_version, $ns_uri);
                 }
@@ -145,20 +145,20 @@ class GetNSTest extends PHPUnit_Framework_TestCase {
     {
         $this->msg->openid1 = true;
         $this->msg->namespaces->addAlias('http://invalid/', 'sreg');
-        $this->assertTrue(Auth_OpenID_SRegBase::_getSRegNS($this->msg) === null);
+        $this->assertTrue(Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg) === null);
     }
 
     function test_openID2DefinedBadly()
     {
         $this->msg->openid1 = false;
         $this->msg->namespaces->addAlias('http://invalid/', 'sreg');
-        $this->assertTrue(Auth_OpenID_SRegBase::_getSRegNS($this->msg) === null);
+        $this->assertTrue(Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg) === null);
     }
 
     function test_openID2Defined_1_0()
     {
         $this->msg->namespaces->add(Auth_OpenID_SREG_NS_URI_1_0);
-        $ns_uri = Auth_OpenID_SRegBase::_getSRegNS($this->msg);
+        $ns_uri = Auth_OpenID_Extension_SRegBase::_getSRegNS($this->msg);
         $this->assertEquals(Auth_OpenID_SREG_NS_URI_1_0, $ns_uri);
     }
 
@@ -209,7 +209,7 @@ function &__getTestCase() {
   return $__TestingReq_TEST_CASE;
 }
 
-class TestingReq extends Auth_OpenID_SRegRequest {
+class TestingReq extends Auth_OpenID_Extension_SRegRequest {
     static function fromOpenIDRequest($thing, $test_case)
     {
         __setTestCase($test_case);
@@ -234,7 +234,7 @@ class TestingReq extends Auth_OpenID_SRegRequest {
 class SRegRequestTest extends PHPUnit_Framework_TestCase {
     function test_constructEmpty()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertEquals(array(), $req->optional);
         $this->assertEquals(array(), $req->required);
         $this->assertEquals(null, $req->policy_url);
@@ -243,7 +243,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_constructFields()
     {
-        $req = Auth_OpenID_SRegRequest::build(
+        $req = Auth_OpenID_Extension_SRegRequest::build(
                                               array('nickname'),
                                               array('gender'),
                                               'http://policy',
@@ -256,7 +256,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_constructBadFields()
     {
-        $this->assertTrue(Auth_OpenID_SRegRequest::build(array('elvis')) === null);
+        $this->assertTrue(Auth_OpenID_Extension_SRegRequest::build(array('elvis')) === null);
     }
 
     function test_fromOpenIDResponse()
@@ -272,33 +272,33 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_parseExtensionArgs_empty()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array()));
     }
 
     function test_parseExtensionArgs_extraIgnored()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('janrain' => 'inc')));
     }
 
     function test_parseExtensionArgs_nonStrict()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('required' => 'beans')));
         $this->assertEquals(array(), $req->required);
     }
 
     function test_parseExtensionArgs_strict()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertFalse($req->parseExtensionArgs(array('required' => 'beans'),
                                                     true));
     }
 
     function test_parseExtensionArgs_policy()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(
                                 array('policy_url' => 'http://policy'), true));
         $this->assertEquals('http://policy', $req->policy_url);
@@ -306,49 +306,49 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_parseExtensionArgs_requiredEmpty()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('required' => ''), true));
         $this->assertEquals(array(), $req->required);
     }
 
     function test_parseExtensionArgs_optionalEmpty()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('optional' => ''), true));
         $this->assertEquals(array(), $req->optional);
     }
 
     function test_parseExtensionArgs_optionalSingle()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('optional' => 'nickname'), true));
         $this->assertEquals(array('nickname'), $req->optional);
     }
 
     function test_parseExtensionArgs_optionalList()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('optional' => 'nickname,email'), true));
         $this->assertEquals(array('nickname','email'), $req->optional);
     }
 
     function test_parseExtensionArgs_optionalListBadNonStrict()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('optional' => 'nickname,email,beer')));
         $this->assertEquals(array('nickname','email'), $req->optional);
     }
 
     function test_parseExtensionArgs_optionalListBadStrict()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertFalse($req->parseExtensionArgs(array('optional' => 'nickname,email,beer'),
                                                     true));
     }
 
     function test_parseExtensionArgs_bothNonStrict()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('optional' => 'nickname',
                                                          'required' => 'nickname')));
         $this->assertEquals(array(), $req->optional);
@@ -357,7 +357,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_parseExtensionArgs_bothStrict()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertFalse($req->parseExtensionArgs(
                                                     array('optional' => 'nickname',
                                                           'required' => 'nickname'),
@@ -366,7 +366,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_parseExtensionArgs_bothList()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertTrue($req->parseExtensionArgs(array('optional' => 'nickname,email',
                                                          'required' => 'country,postcode'),
                                                    true));
@@ -376,7 +376,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_allRequestedFields()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertEquals(array(), $req->allRequestedFields());
         $req->requestField('nickname');
         $this->assertEquals(array('nickname'), $req->allRequestedFields());
@@ -388,7 +388,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_wereFieldsRequested()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertFalse($req->wereFieldsRequested());
         $req->requestField('gender');
         $this->assertTrue($req->wereFieldsRequested());
@@ -398,7 +398,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
     {
         global $Auth_OpenID_sreg_data_fields;
 
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         foreach ($Auth_OpenID_sreg_data_fields as $field_name => $desc) {
             $this->assertFalse($req->contains($field_name));
         }
@@ -417,7 +417,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_requestField_bogus()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertFalse($req->requestField('something else'));
         $this->assertFalse($req->requestField('something else', true));
     }
@@ -427,7 +427,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
         global $Auth_OpenID_sreg_data_fields;
 
         // Add all of the fields, one at a time
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $fields = array_keys($Auth_OpenID_sreg_data_fields);
         foreach ($fields as $field_name) {
             $req->requestField($field_name);
@@ -479,7 +479,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_requestFields_type()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertFalse($req->requestFields('nickname'));
     }
 
@@ -488,7 +488,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
         global $Auth_OpenID_sreg_data_fields;
 
         // Add all of the fields
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
 
         $fields = array_keys($Auth_OpenID_sreg_data_fields);
         $req->requestFields($fields);
@@ -530,7 +530,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
 
     function test_getExtensionArgs()
     {
-        $req = Auth_OpenID_SRegRequest::build();
+        $req = Auth_OpenID_Extension_SRegRequest::build();
         $this->assertEquals(array(), $req->getExtensionArgs());
 
         $this->assertTrue($req->requestField('nickname'));
@@ -579,7 +579,7 @@ class SRegResponseTest extends PHPUnit_Framework_TestCase {
             'sreg.nickname' => 'The Mad Stork',
             ));
         $success_resp = new DummySuccessResponse($message, array());
-        $sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($success_resp);
+        $sreg_resp = Auth_OpenID_Extension_SRegResponse::fromSuccessResponse($success_resp);
         $this->assertTrue(count($sreg_resp->contents()) === 0);
     }
 
@@ -590,7 +590,7 @@ class SRegResponseTest extends PHPUnit_Framework_TestCase {
             ));
 
         $success_resp = new DummySuccessResponse($message, array());
-        $sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($success_resp,
+        $sreg_resp = Auth_OpenID_Extension_SRegResponse::fromSuccessResponse($success_resp,
                                                                    false);
 
         $this->assertEquals(array('nickname' => 'The Mad Stork'),
@@ -602,7 +602,7 @@ class SendFieldsTest extends PHPUnit_Framework_TestCase {
     function _test($uri)
     {
         // Create a request message with simple registration fields
-        $sreg_req = Auth_OpenID_SRegRequest::build(array('nickname', 'email'),
+        $sreg_req = Auth_OpenID_Extension_SRegRequest::build(array('nickname', 'email'),
                                                    array('fullname'));
         $req_msg = new Auth_OpenID_Message($uri);
         $req_msg->updateArgs(Auth_OpenID_SREG_NS_URI,
@@ -630,7 +630,7 @@ class SendFieldsTest extends PHPUnit_Framework_TestCase {
                       'language' => 'en-us');
 
         // Put the requested data fields in the response message
-        $sreg_resp = Auth_OpenID_SRegResponse::extractResponse($sreg_req, $data);
+        $sreg_resp = Auth_OpenID_Extension_SRegResponse::extractResponse($sreg_req, $data);
         $resp->addExtension($sreg_resp);
 
         // <- send id_res response
@@ -653,13 +653,13 @@ class SendFieldsTest extends PHPUnit_Framework_TestCase {
     }
 }
 
-class Tests_Auth_OpenID_SReg extends PHPUnit_Framework_TestSuite {
+class Tests_Auth_OpenID_Extension_SReg extends PHPUnit_Framework_TestSuite {
     function getName()
     {
-        return "Tests_Auth_OpenID_SReg";
+        return "Tests_Auth_OpenID_Extension_SReg";
     }
 
-    function Tests_Auth_OpenID_SReg()
+    function Tests_Auth_OpenID_Extension_SReg()
     {
         $this->addTestSuite('SRegURITest');
         $this->addTestSuite('CheckFieldNameTest');

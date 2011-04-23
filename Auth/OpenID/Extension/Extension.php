@@ -17,7 +17,7 @@ require_once 'Auth/OpenID/Message.php';
  *
  * @package OpenID
  */
-class Auth_OpenID_Extension {
+class Auth_OpenID_Extension_Extension {
     /**
      * ns_uri: The namespace to which to add the arguments for this
      * extension
