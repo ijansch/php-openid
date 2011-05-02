@@ -1,10 +1,10 @@
 <?php
-require_once(dirname(dirname(dirname(__FILE__))).'/Common.php');
+require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/Common.php');
 
 require_once 'Auth/OpenID/Message.php';
 require_once 'Auth/OpenID/Extension/Extension.php';
 
-class _ExtensionTest_DummyExtension extends Auth_OpenID_Extension_Extension {
+class _ExtensionTest_DummyExtension extends Auth_OpenID_Extension {
     var $ns_uri = 'http://an.extension/';
     var $ns_alias = 'dummy';
 
@@ -14,7 +14,7 @@ class _ExtensionTest_DummyExtension extends Auth_OpenID_Extension_Extension {
     }
 }
 
-class Tests_Auth_OpenID_Extension_Extension extends PHPUnit_Framework_TestCase {
+class Tests_Auth_OpenID_Extension extends PHPUnit_Framework_TestCase {
     function test_OpenID1()
     {
         $oid1_msg = new Auth_OpenID_Message(Auth_OpenID_OPENID1_NS);

@@ -38,7 +38,7 @@ function run() {
             $success .= '  (XRI CanonicalID: '.$escaped_canonicalID.') ';
         }
 
-        $sreg_resp = Auth_OpenID_Extension_SRegResponse::fromSuccessResponse($response);
+        $sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($response);
 
         $sreg = $sreg_resp->contents();
 
@@ -57,7 +57,7 @@ function run() {
                 "'.";
         }
 
-	$pape_resp = Auth_OpenID_Extension_PAPE_Response::fromSuccessResponse($response);
+	$pape_resp = Auth_OpenID_PAPE_Response::fromSuccessResponse($response);
 
 	if ($pape_resp) {
             if ($pape_resp->auth_policies) {

@@ -81,7 +81,7 @@ class Auth_OpenID_Extension_AX_Error {
  *
  * @package OpenID
  */
-class Auth_OpenID_Extension_AX_Message extends Auth_OpenID_Extension_Extension {
+class Auth_OpenID_Extension_AX_Message extends Auth_OpenID_Extension {
     /**
      * ns_alias: The preferred namespace alias for attribute exchange
      * messages

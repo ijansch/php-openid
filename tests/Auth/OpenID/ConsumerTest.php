@@ -22,7 +22,7 @@ require_once 'Auth/OpenID/KVForm.php';
 require_once 'Auth/OpenID/Consumer.php';
 require_once 'Auth/OpenID/Server.php';
 require_once 'Auth/OpenID/Nonce.php';
-require_once 'Auth/OpenID/Extension/SReg.php';
+require_once 'Auth/OpenID/SReg.php';
 require_once 'Auth/OpenID/Message.php';
 require_once 'Auth/OpenID/Store/MemStore.php';
 

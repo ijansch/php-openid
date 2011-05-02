@@ -8,7 +8,7 @@ require_once "lib/render/about.php";
 require_once "lib/render/trust.php";
 
 require_once "Auth/OpenID/Server.php";
-require_once "Auth/OpenID/Extension/SReg.php";
+require_once "Auth/OpenID/SReg.php";
 
 function authCancel($info)
 {
@@ -67,10 +67,10 @@ function doAuth($info, $trusted=null, $fail_cancels=false,
 
         // Add the simple registration response values to the OpenID
         // response message.
-        $sreg_request = Auth_OpenID_Extension_SRegRequest::fromOpenIDRequest(
+        $sreg_request = Auth_OpenID_SRegRequest::fromOpenIDRequest(
                                               $info);
 
-        $sreg_response = Auth_OpenID_Extension_SRegResponse::extractResponse(
+        $sreg_response = Auth_OpenID_SRegResponse::extractResponse(
                                               $sreg_request, $sreg_data);
 
         $sreg_response->toMessage($response->fields);
