@@ -31,7 +31,7 @@ $identifier = getOpenIDIdentifier();
   <input type="text" name="openid_identifier" size="40" />
   <input type="submit" value="Begin" />
   </form>
-<?
+<?php
 if ($identifier) {
 
     $fetcher = Auth_Yadis_Yadis::getHTTPFetcher();
@@ -47,19 +47,19 @@ if ($identifier) {
         <th>Claimed Identifier</th>
         <td><?= escape($normalized_identifier) ?></td>
       </tr>
-<?
+<?php
 if (!$endpoints) {
 ?>
     <tr>
       <td colspan="2">No OpenID services discovered.</td>
     </tr>
-<?
+<?php
 } else {
 ?>
     <tr>
       <td colspan="2">Discovered OpenID services:</td>
     </tr>
-<?
+<?php
 foreach ($endpoints as $endpoint) {
 ?>
     <tr>
@@ -77,23 +77,23 @@ foreach ($endpoints as $endpoint) {
       <td colspan="2">
         <h3>Service types:</h3>
         <ul>
-<?
+<?php
 foreach ($endpoint->type_uris as $type_uri) {
 ?>
           <li><tt><?= escape($type_uri) ?></tt></li>
-<?
+<?php
 }
 ?>
         </ul>
       </td>
     </tr>
-<?
+<?php
 }
 }
 ?>
   </tbody>
 </table>
-<?
+<?php
 }
 ?>
 </body>
