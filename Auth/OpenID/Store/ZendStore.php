@@ -20,7 +20,7 @@
 /**
  * Import the interface for creating a new store class.
  */
-require_once 'Auth/OpenID/Interface.php';
+require_once 'Auth/OpenID/Store/Interface.php';
 
 /**
  * This is a Zend_Cache_Backend_Interface-based store for
