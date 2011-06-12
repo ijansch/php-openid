@@ -176,19 +176,19 @@ function render_form() {
 
     $sqlite_found = false;
     if (extension_loaded('sqlite') ||
-        @(function_exists('dl') && @dl('sqlite.' . PHP_SHLIB_SUFFIX)) {
+        @(function_exists('dl') && @dl('sqlite.' . PHP_SHLIB_SUFFIX))) {
       $sqlite_found = true;
     }
 
     $mysql_found = false;
     if (extension_loaded('mysql') ||
-        (function_exists('dl') && @dl('mysql.' . PHP_SHLIB_SUFFIX)) {
+        (function_exists('dl') && @dl('mysql.' . PHP_SHLIB_SUFFIX))) {
       $mysql_found = true;
     }
 
     $pgsql_found = false;
     if (extension_loaded('pgsql') ||
-        (function_exists('dl') && @dl('pgsql.' . PHP_SHLIB_SUFFIX)) {
+        (function_exists('dl') && @dl('pgsql.' . PHP_SHLIB_SUFFIX))) {
       $pgsql_found = true;
     }
 
@@ -498,7 +498,7 @@ function getOpenIDStore()
                  'hostspec' => '<?php print $_SESSION['store_data']['host']; ?>'
                  );
 
-    $db =& DB::connect($dsn);
+    $db = DB::connect($dsn);
 
     if (PEAR::isError($db)) {
         return null;
@@ -527,7 +527,7 @@ function getOpenIDStore()
                  'database' => '<?php print $_SESSION['store_data']['database']; ?>'
                  );
 
-    $db =& DB::connect($dsn);
+    $db = DB::connect($dsn);
 
     if (PEAR::isError($db)) {
         return null;
