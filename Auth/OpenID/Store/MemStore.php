@@ -81,7 +81,7 @@ class Auth_OpenID_Store_MemStore implements Auth_OpenID_Store_OpenIDStore {
         $this->nonces = array();
     }
 
-    function &_getServerAssocs($server_url)
+    function _getServerAssocs($server_url)
     {
         if (!array_key_exists($server_url, $this->server_assocs)) {
             $this->server_assocs[$server_url] = new ServerAssocs();
@@ -90,15 +90,14 @@ class Auth_OpenID_Store_MemStore implements Auth_OpenID_Store_OpenIDStore {
         return $this->server_assocs[$server_url];
     }
 
-    function storeAssociation($server_url, $assoc)
-    {
-        $assocs =& $this->_getServerAssocs($server_url);
+    function storeAssociation($server_url, $assoc) {
+        $assocs = $this->_getServerAssocs($server_url);
         $assocs->set($assoc);
     }
 
     function getAssociation($server_url, $handle=null)
     {
-        $assocs =& $this->_getServerAssocs($server_url);
+        $assocs = $this->_getServerAssocs($server_url);
         if ($handle === null) {
             return $assocs->best();
         } else {
@@ -108,7 +107,7 @@ class Auth_OpenID_Store_MemStore implements Auth_OpenID_Store_OpenIDStore {
 
     function removeAssociation($server_url, $handle)
     {
-        $assocs =& $this->_getServerAssocs($server_url);
+        $assocs = $this->_getServerAssocs($server_url);
         return $assocs->remove($handle);
     }
 
