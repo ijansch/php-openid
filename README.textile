@@ -117,6 +117,7 @@ update README with mention of closing issues :
 * Zend Store ( 12 )
 * detect command_line ( 32 )
 * apache mod_rewrite + QUERY_STRING ( 37 )
+* correct handling of stateless mode ( 49 )
 
 h3. already closed issues ( but not notified in JanRain's Issues )
 
