@@ -2,14 +2,17 @@ h1. PHP OpenID
 
 This is a forked PHP OpenID library from PHP OpenID library by JanRain, Inc.
 
-h2. Getting Started
+h2. divergences with JanRain's PHP-OpenID
 
-First, run the 'docs/detect.php' script either from the command
-line or via the web.  It will generate a report of any system
-configuration changes necessary to run the library.
-
+* reordering files
+* more Stores
+* including contrib Extensions in the main tree
 
 h2. Installation
+
+h3. Getting Started
+
+First, run the 'docs/detect.php' script either from the command line or via the web.  It will generate a report of any system configuration changes necessary to run the library.
 
 h3. dependencies
 
@@ -27,11 +30,9 @@ recommended because it's MUCH faster!)  This is required.
 
 h4. Optional libraries
 
-* If you plan to use SQLite, PostgreSQL, or MySQL to store OpenIDdata,
-you can use PEAR DB or MDB2 and the approriate extension.
+* If you plan to use SQLite, PostgreSQL, or MySQL to store OpenIDdata, you can use PEAR DB or MDB2 and the approriate extension.
 
-* If you plan to use Memcache compliant database to store OpenID data,
-you can use memcache or memcached extension.
+* If you plan to use Memcache compliant database to store OpenID data, you can use memcache or memcached extension.
 
 h3. Installation process
 
@@ -47,103 +48,95 @@ h3. from a library older than JanRain php-OpenID 2.2.2
 
 h3. from JanRain php-OpenID 2.2.2
 
-* changed path :
-  * about extensions :
-    * Auth/OpenID/AX.php -> Auth/OpenID/Extension/AX.php
-    * Auth/OpenID/SReg.php -> Auth/OpenID/Extension/SReg.php
-    * Auth/OpenID/PAPE.php -> Auth/OpenID/Extension/PAPE.php
-    * Auth/OpenID/Extension.php -> Auth/OpenID/Extension/Extension.php
-  * about stores :
-    * Auth/OpenID/MemcachedStore.php -> Auth/OpenID/Store/MemcachedStore.php
-    * Auth/OpenID/MySQLStore.php -> Auth/OpenID/Store/MySQLStore.php
-    * Auth/OpenID/MDB2Store.php -> Auth/OpenID/Store/MDB2Store.php
-    * Auth/OpenID/SQLiteStore.php -> Auth/OpenID/Store/SQLiteStore.php
-    * Auth/OpenID/PostgreSQLStore.php -> Auth/OpenID/Store/PostgreSQLStore.php
-    * Auth/OpenID/SQLStore.php -> Auth/OpenID/Store/SQLStore.php
+h4. Modified Pathes
+
+* about extensions :
+** Auth/OpenID/AX.php -> Auth/OpenID/Extension/AX.php
+** Auth/OpenID/SReg.php -> Auth/OpenID/Extension/SReg.php
+** Auth/OpenID/PAPE.php -> Auth/OpenID/Extension/PAPE.php
+** Auth/OpenID/Extension.php -> Auth/OpenID/Extension/Extension.php
+* about stores :
+** Auth/OpenID/MemcachedStore.php -> Auth/OpenID/Store/MemcachedStore.php
+** Auth/OpenID/MySQLStore.php -> Auth/OpenID/Store/MySQLStore.php
+** Auth/OpenID/MDB2Store.php -> Auth/OpenID/Store/MDB2Store.php
+** Auth/OpenID/SQLiteStore.php -> Auth/OpenID/Store/SQLiteStore.php
+** Auth/OpenID/PostgreSQLStore.php -> Auth/OpenID/Store/PostgreSQLStore.php
+** Auth/OpenID/SQLStore.php -> Auth/OpenID/Store/SQLStore.php
+
+h4. Modified Structures
+
+* Auth_OpenID_Store_OpenIDStore is now declared as an interface
 
 h2. Testing Your Setup
 
-You can use the example code to test your setup.  To run the example
-consumer or server, follow the instructions in the examples/README
-file.
+You can use the example code to test your setup.  To run the example consumer or server, follow the instructions in the docs/README file.
 
 h2. Using The API
 
-The best way to get started using the API is to take a look at the
-example consumer and server in the examples/ directory.  See the
-examples/README file for more details.
+The best way to get started using the API is to take a look at the example consumer and server in the docs/ directory.  See the docs/README file for more details.
 
 h2. Documentation
 
 You can view the HTML library documentation in the docs/ directory.
 
-This package's documentation is in PhpDoc format.  To generate the
-documentation, install phpdoc and run the admin/makedoc.sh script.
+This package's documentation is in PhpDoc format.  To generate the documentation, install phpdoc and run the admin/makedoc.sh script.
 Phpdoc lives at:
 
   http://www.phpdoc.org/
 
 h3. Development Environment Setup
 
-Janrain note: You'll need to run these commands to generate
-documentation for this project:
+Janrain note: You'll need to run these commands to generate documentation for this project:
 
 * @apt-get install php5-pear@
 * @pear install PhpDocumentor@
 
-
 h2. Troubleshootings
 
-* If you're unable to use an OpenID URL with the library, you may want
-to try using the discover tool (examples/discover.php).  This tool
-will perform OpenID discovery on the identifier and give a list of
-discovered OpenID services and their types.
+* If you're unable to use an OpenID URL with the library, you may want to try using the discover tool (docs/discover.php).  This tool will perform OpenID discovery on the identifier and give a list of discovered OpenID services and their types.
 
-* On some systems, PHP basedir restrictions prevent web servers from
-opening a source of randomness, such as /dev/urandom.  If your PHP
-OpenID library has trouble getting a satisfactory source of
-randomness, check your Apache and PHP configurations to be sure that
-the randomness source is in the list of allowed paths for the
-"open_basedir" option.
+* On some systems, PHP basedir restrictions prevent web servers from opening a source of randomness, such as /dev/urandom.  If your PHP OpenID library has trouble getting a satisfactory source of randomness, check your Apache and PHP configurations to be sure that the randomness source is in the list of allowed paths for the "open_basedir" option.
 
-* In some cases, bugs in the GMP math library will result in signature
-validation errors when using this library.  Since GMP is preferred
-over bcmath (for performance), you will have to define
-Auth_OpenID_BUGGY_GMP in your application *before* importing any of
-the library code:
+* In some cases, bugs in the GMP math library will result in signature validation errors when using this library.  Since GMP is preferred over bcmath (for performance), you will have to define Auth_OpenID_BUGGY_GMP in your application *before* importing any of the library code:
 
   @ define('Auth_OpenID_BUGGY_GMP', true); @
 
-* Not all PHP installations support SSL.  You can find out if yours
-supports SSL by reading the "HTTP Fetching" section of the output of
-"examples/detect.php."  If your installation does not support SSL,
-then https:// identity URLs and server URLs will not be supported by
-the library.  An attempt to use such an identity URL will be
-equivalent to using an invalid OpenID.  To enable SSL support,
-recompile PHP with OpenSSL support or install the appropriate OpenSSL
-module for your platform.  If you are using CURL, CURL will need to be
-built with OpenSSL support.
+* Not all PHP installations support SSL.  You can find out if yours supports SSL by reading the "HTTP Fetching" section of the output of "docs/detect.php."  If your installation does not support SSL, then https:// identity URLs and server URLs will not be supported by the library.  An attempt to use such an identity URL will be equivalent to using an invalid OpenID.  To enable SSL support, recompile PHP with OpenSSL support or install the appropriate OpenSSL module for your platform.  If you are using CURL, CURL will need to be built with OpenSSL support.
+
+h2. JanRain's issues
+
+h3. open issues
+
+* replacement of PEAR::DB ( 4 )
+
+h3. closed issues
+
+update README with mention of closing issues :
+* PHP 5.3 compliant ( 8 31 44 )
+* dl() availability  ( 10 47 )
+* Zend Store ( 12 )
+* detect command_line ( 32 )
+* apache mod_rewrite + QUERY_STRING ( 37 )
+
+h3. already closed issues ( but not notified in JanRain's Issues )
+
+* 11
+* 13
+* 18
 
 h2. Getting Help
 
-If you have any questions, recommendations, or patches, please tell
-us!  Subscribe to our OpenID development discussion list at
+If you have any questions, recommendations, or patches, please tell us!  Subscribe to our OpenID development discussion list at
 
   https://github.com/mouns/php-openid/issues
 
 h2. Contributing
 
-If you have a bugfix or feature you'd like to contribute, don't
-hesitate to send it to us.  Post your patch to issues section at
+If you have a bugfix or feature you'd like to contribute, don't hesitate to send it to us.  Post your patch to issues section at
 
   https://github.com/mouns/php-openid
 
-For more detailed information on how to contribute, see
-
-  http://openidenabled.com/contribute/
-
-To run the test suite included with this package, install PHPUnit 3.5
-and run
+To run the test suite included with this package, install PHPUnit 3.5 and run
 
   php admin/texttest.php
 
