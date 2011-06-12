@@ -39,13 +39,13 @@ if ($identifier) {
         $identifier, $fetcher);
 
 ?>
-  <h3>Discovery Results for <?= escape($identifier) ?></h3>
+  <h3>Discovery Results for <?php echo escape($identifier) ?></h3>
 
   <table cellpadding="7" cellspacing="0">
     <tbody>
       <tr>
         <th>Claimed Identifier</th>
-        <td><?= escape($normalized_identifier) ?></td>
+        <td><?php echo escape($normalized_identifier) ?></td>
       </tr>
 <?php
 if (!$endpoints) {
@@ -67,11 +67,11 @@ foreach ($endpoints as $endpoint) {
     </tr>
     <tr>
       <th>Server URL</th>
-      <td><tt><?= escape($endpoint->server_url) ?></tt></td>
+      <td><tt><?php echo escape($endpoint->server_url) ?></tt></td>
     </tr>
     <tr>
       <th>Local ID</th>
-      <td><tt><?= escape($endpoint->local_id) ?></tt></td>
+      <td><tt><?php echo escape($endpoint->local_id) ?></tt></td>
     </tr>
     <tr>
       <td colspan="2">
@@ -80,7 +80,7 @@ foreach ($endpoints as $endpoint) {
 <?php
 foreach ($endpoint->type_uris as $type_uri) {
 ?>
-          <li><tt><?= escape($type_uri) ?></tt></li>
+          <li><tt><?php echo escape($type_uri) ?></tt></li>
 <?php
 }
 ?>
