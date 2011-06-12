@@ -1,14 +1,10 @@
 h1. PHP OpenID
 
 This is a forked PHP OpenID library from PHP OpenID library by JanRain, Inc.
-You can visit their website for more information about
-their package and other OpenID implementations and tools:
-
-  http://www.openidenabled.com/
 
 h2. Getting Started
 
-First, run the 'examples/detect.php' script either from the command
+First, run the 'docs/detect.php' script either from the command
 line or via the web.  It will generate a report of any system
 configuration changes necessary to run the library.
 
@@ -19,10 +15,8 @@ h3. dependencies
 
 h4. php
 
-You will need PHP 5.0.0 or greater to use this library. 
-JanRain has tested the library Linux on PHP 5.0.5, and 5.1.1. JanRain
-has tested the library on Windows XP on PHP 4.4.4.
-I have tested with PHP 5.3.4
+You will need PHP 5.3 or greater to use this library. 
+There is no garantee that you can run it on an older release of PHP.
 
 h4. Required libraries
 
@@ -45,6 +39,27 @@ h4. brute installation
 
 * Copy the Auth/ directory into your PHP include path.
 
+h2. Upgrading the library
+
+h3. from a library older than JanRain php-OpenID 2.2.2
+
+* read docs/NEWS and docs/CHANGES-2.1.0 and make the right upgrades
+
+h3. from JanRain php-OpenID 2.2.2
+
+* changed path :
+  * about extensions :
+    * Auth/OpenID/AX.php -> Auth/OpenID/Extension/AX.php
+    * Auth/OpenID/SReg.php -> Auth/OpenID/Extension/SReg.php
+    * Auth/OpenID/PAPE.php -> Auth/OpenID/Extension/PAPE.php
+    * Auth/OpenID/Extension.php -> Auth/OpenID/Extension/Extension.php
+  * about stores :
+    * Auth/OpenID/MemcachedStore.php -> Auth/OpenID/Store/MemcachedStore.php
+    * Auth/OpenID/MySQLStore.php -> Auth/OpenID/Store/MySQLStore.php
+    * Auth/OpenID/MDB2Store.php -> Auth/OpenID/Store/MDB2Store.php
+    * Auth/OpenID/SQLiteStore.php -> Auth/OpenID/Store/SQLiteStore.php
+    * Auth/OpenID/PostgreSQLStore.php -> Auth/OpenID/Store/PostgreSQLStore.php
+    * Auth/OpenID/SQLStore.php -> Auth/OpenID/Store/SQLStore.php
 
 h2. Testing Your Setup
 
@@ -60,7 +75,7 @@ examples/README file for more details.
 
 h2. Documentation
 
-You can view the HTML library documentation in the doc/ directory.
+You can view the HTML library documentation in the docs/ directory.
 
 This package's documentation is in PhpDoc format.  To generate the
 documentation, install phpdoc and run the admin/makedoc.sh script.
