@@ -287,7 +287,7 @@ class Tests_Auth_OpenID_Consumer extends PHPUnit_Framework_TestCase {
                                                $_Auth_OpenID_assocs[0][1]);
 
         $consumer = new Auth_OpenID_GenericConsumer($store);
-        $consumer->fetcher =& $fetcher;
+        $consumer->fetcher = $fetcher;
 
         $expected_num_assocs = 0;
         $this->assertEquals($expected_num_assocs, $fetcher->num_assocs);
@@ -1386,7 +1386,7 @@ class Tests_Auth_OpenID_CheckAuthResponse extends _TestIdRes {
         $lifetime = 1000;
         $assoc = new Auth_OpenID_Association(
                         'handle', 'secret', $issued, $lifetime, 'HMAC-SHA1');
-        $store =& $this->consumer->store;
+        $store = $this->consumer->store;
         $store->storeAssociation($this->server_url, $assoc);
         $assoc2 = $store->getAssociation($this->server_url);
         $this->assertEquals($assoc, $assoc2);
@@ -1525,7 +1525,7 @@ class Tests_Auth_OpenID_Consumer_TestCheckAuth extends _TestIdRes {
         $this->store = new Auth_OpenID_Store_MemStore();
         $this->consumer = new Auth_OpenID_GenericConsumer($this->store);
         $this->fetcher = new _MockFetcher();
-        $this->consumer->fetcher =& $this->fetcher;
+        $this->consumer->fetcher = $this->fetcher;
     }
 
     function test_checkauth_error()
@@ -1614,7 +1614,7 @@ class Tests_Auth_OpenID_Consumer_TestFetchAssoc extends PHPUnit_Framework_TestCa
         $this->store = new Auth_OpenID_Store_MemStore();
         $this->fetcher = new _MockFetcher();
         $this->consumer = new Auth_OpenID_GenericConsumer($this->store);
-        $this->consumer->fetcher =& $this->fetcher;
+        $this->consumer->fetcher = $this->fetcher;
     }
 
     function test_kvpost_error()
@@ -1882,7 +1882,7 @@ class Tests_Auth_OpenID_ConsumerTest2 extends PHPUnit_Framework_TestCase {
     function test_completeEmptySession()
     {
         $this->consumer->consumer = new Consumer_completeEmptySession($this->store);
-        $this->consumer->consumer->test_case =& $this;
+        $this->consumer->consumer->test_case = $this;
 
         $response = $this->consumer->complete(null);
         $this->assertTrue(Auth_OpenID::isFailure($response));
@@ -2090,7 +2090,7 @@ class IDPDrivenTest extends PHPUnit_Framework_TestCase {
 
         $this->consumer = new IDPDrivenTest_Consumer1($this->store);
         $this->consumer->failure_cb = array($this, "assertTrue");
-        $this->consumer->check_endpoint =& $this->endpoint;
+        $this->consumer->check_endpoint = $this->endpoint;
 
         $identifier = '=directed_identifier';
         $message = Auth_OpenID_Message::fromPostArgs(array(
@@ -2107,7 +2107,7 @@ class IDPDrivenTest extends PHPUnit_Framework_TestCase {
 
 	$this->consumer->disableReturnToChecking();
 
-        $this->consumer->endpoint =& $endpoint;
+        $this->consumer->endpoint = $endpoint;
         $response = $this->consumer->_doIdRes($message, $this->endpoint, null);
 
         $this->failUnlessSuccess($response);

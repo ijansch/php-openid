@@ -47,7 +47,7 @@ class Tests_Auth_OpenID_BuildDiscoveryURL extends PHPUnit_Framework_TestCase {
 
 class _MockDiscover {
     function _MockDiscover($data) {
-        $this->data =& $data;
+        $this->data = $data;
     }
 
     function mockDiscover($uri, $fetcher, $discover_function=null)
@@ -222,7 +222,7 @@ class Tests_Auth_OpenID_ReturnToMatches extends PHPUnit_Framework_TestCase {
 class Verifier {
     function Verifier($test_case, $return_to)
     {
-        $this->tc =& $test_case;
+        $this->tc = $test_case;
         $this->return_to = $return_to;
     }
 

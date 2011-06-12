@@ -23,7 +23,7 @@ class Tests_Auth_OpenID_BinLongConvertRnd extends PHPUnit_Framework_TestCase {
 
     function Tests_Auth_OpenID_BinLongConvertRnd($lib, $max)
     {
-        $this->lib =& $lib;
+        $this->lib = $lib;
         $this->max = $max;
     }
 
@@ -48,7 +48,7 @@ class Tests_Auth_OpenID_BinLongConvert extends PHPUnit_Framework_TestCase {
 
     function Tests_Auth_OpenID_BinLongConvert($lib, $bin, $lng)
     {
-        $this->lib =& $lib;
+        $this->lib = $lib;
         $this->bin = $bin;
         $this->lng = $lng;
     }
@@ -99,7 +99,7 @@ class Tests_Auth_OpenID_LongToBase64 extends Tests_Auth_OpenID_Base64ToLong {
 class Tests_Auth_OpenID_Rand extends PHPUnit_Framework_TestCase {
     function Tests_Auth_OpenID_Rand($lib)
     {
-        $this->lib =& $lib;
+        $this->lib = $lib;
     }
 
     function runTest()
@@ -185,7 +185,7 @@ class Tests_Auth_OpenID_BigMath extends PHPUnit_Framework_TestSuite {
 
     function _addBinLongTests()
     {
-        $lib =& Auth_OpenID_getMathLib();
+        $lib = Auth_OpenID_getMathLib();
         $max = Tests_Auth_OpenID_maxint();
         $upper = defined('Tests_Auth_OpenID_thorough') ? 499 : 3;
 

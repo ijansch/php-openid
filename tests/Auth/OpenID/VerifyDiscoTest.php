@@ -174,7 +174,7 @@ class Tests_Auth_OpenID_VerifyDisco extends _DiscoverAndVerify {
     function test_openid2UsePreDiscoveredWrongType()
     {
         $this->consumer = new Tests_Auth_OpenID_VerifyDisco_1($this->store);
-        $this->consumer->test_case =& $this;
+        $this->consumer->test_case = $this;
         $this->consumer->text = "verify failed";
 
         $endpoint = new Auth_OpenID_ServiceEndpoint();
@@ -183,7 +183,7 @@ class Tests_Auth_OpenID_VerifyDisco extends _DiscoverAndVerify {
         $endpoint->server_url = 'Phone Home';
         $endpoint->type_uris = array(Auth_OpenID_TYPE_1_1);
 
-        $this->consumer->endpoint =& $endpoint;
+        $this->consumer->endpoint = $endpoint;
 
         $msg = Auth_OpenID_Message::fromOpenIDArgs(
               array('ns' => Auth_OpenID_OPENID2_NS,

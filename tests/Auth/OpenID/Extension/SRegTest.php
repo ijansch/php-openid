@@ -183,7 +183,7 @@ $__ns_sentinel = 'ns_sentinel';
 class SentinelFakeMessage {
     function SentinelFakeMessage($test_case)
     {
-        $this->test_case =& $test_case;
+        $this->test_case = $test_case;
         $this->message = new Auth_OpenID_Message();
     }
 
@@ -226,7 +226,7 @@ class TestingReq extends Auth_OpenID_SRegRequest {
     function parseExtensionArgs($args)
     {
         global $__args_sentinel;
-        $tc =& __getTestCase();
+        $tc = __getTestCase();
         $tc->assertEquals($__args_sentinel, $args);
     }
 }
@@ -264,7 +264,7 @@ class SRegRequestTest extends PHPUnit_Framework_TestCase {
         $openid_req = new Auth_OpenID_Request();
 
         $msg = new SentinelFakeMessage($this);
-        $openid_req->message =& $msg;
+        $openid_req->message = $msg;
 
         $req = TestingReq::fromOpenIDRequest($openid_req, $this);
         $this->assertTrue(is_a($req, 'TestingReq'));
@@ -609,7 +609,7 @@ class SendFieldsTest extends PHPUnit_Framework_TestCase {
                              $sreg_req->getExtensionArgs());
 
         $req = new Auth_OpenID_Request();
-        $req->message =& $req_msg;
+        $req->message = $req_msg;
         $req->namespace = $req_msg->getOpenIDNamespace();
 
         // -> send checkid_* request

@@ -562,7 +562,7 @@ class Auth_OpenID_Extension_AX_KeyValueMessage extends Auth_OpenID_Extension_AX_
             $this->data[$type_uri] = array();
         }
 
-        $values =& $this->data[$type_uri];
+        $values = $this->data[$type_uri];
         $values[] = $value;
     }
 
@@ -573,9 +573,9 @@ class Auth_OpenID_Extension_AX_KeyValueMessage extends Auth_OpenID_Extension_AX_
      * @param type_uri: The URI for the attribute
      * @param values: A list of values to send for this attribute.
      */
-    function setValues($type_uri, &$values)
+    function setValues($type_uri, $values)
     {
-        $this->data[$type_uri] =& $values;
+        $this->data[$type_uri] = $values;
     }
 
     /**
