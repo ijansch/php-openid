@@ -1195,16 +1195,15 @@ class Auth_OpenID_ServerResponse {
       global $_Auth_OpenID_Request_Modes;
 
         if (in_array($this->request->mode, $_Auth_OpenID_Request_Modes)) {
-            if ($this->fields->isOpenID2() &&
-                (strlen($this->encodeToURL()) >
-                   Auth_OpenID_OPENID1_URL_LIMIT)) {
+            if ($this->fields->isOpenID2()){
                 return Auth_OpenID_ENCODE_HTML_FORM;
-            } else {
-                return Auth_OpenID_ENCODE_URL;
             }
-        } else {
-            return Auth_OpenID_ENCODE_KVFORM;
+            if (strlen($this->encodeToURL()) > Auth_OpenID_OPENID1_URL_LIMIT)) {
+                return Auth_OpenID_ENCODE_HTML_FORM;
+            }
+            return Auth_OpenID_ENCODE_URL;
         }
+        return Auth_OpenID_ENCODE_KVFORM;
     }
 
     /*
