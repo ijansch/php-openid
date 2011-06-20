@@ -1198,7 +1198,7 @@ class Auth_OpenID_ServerResponse {
             if ($this->fields->isOpenID2()){
                 return Auth_OpenID_ENCODE_HTML_FORM;
             }
-            if (strlen($this->encodeToURL()) > Auth_OpenID_OPENID1_URL_LIMIT)) {
+            if (strlen($this->encodeToURL()) > Auth_OpenID_OPENID1_URL_LIMIT) {
                 return Auth_OpenID_ENCODE_HTML_FORM;
             }
             return Auth_OpenID_ENCODE_URL;
