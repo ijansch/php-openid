@@ -21,7 +21,7 @@ function doIncludes() {
      * Require the "file store" module, which we'll need to store
      * OpenID information.
      */
-    require_once "Auth/OpenID/Stores/FileStore.php";
+    require_once "Auth/OpenID/Store/FileStore.php";
 
     /**
      * Require the Simple Registration extension API.

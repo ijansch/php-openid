@@ -422,7 +422,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
 
     function test_filestore()
     {
-        require_once 'Auth/OpenID/Stores/FileStore.php';
+        require_once 'Auth/OpenID/Store/FileStore.php';
 
         $temp_dir = _Auth_OpenID_mkdtemp();
 
@@ -451,7 +451,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
             return;
         }
 
-        require_once 'Auth/OpenID/Stores/PostgreSQLStore.php';
+        require_once 'Auth/OpenID/Store/PostgreSQLStore.php';
 
         global $_Auth_OpenID_db_test_host;
 
@@ -569,7 +569,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
             return;
         }
 
-        require_once 'Auth/OpenID/Stores/SQLiteStore.php';
+        require_once 'Auth/OpenID/Store/SQLiteStore.php';
 
         $temp_dir = _Auth_OpenID_mkdtemp();
 
@@ -612,7 +612,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
             return;
         }
 
-        require_once 'Auth/OpenID/Stores/MySQLStore.php';
+        require_once 'Auth/OpenID/Store/MySQLStore.php';
 
         global $_Auth_OpenID_db_test_host;
 
@@ -665,7 +665,7 @@ class Tests_Auth_OpenID_Included_StoreTest extends Tests_Auth_OpenID_Store {
             return;
         }
 
-        require_once 'Auth/OpenID/Stores/MDB2Store.php';
+        require_once 'Auth/OpenID/Store/MDB2Store.php';
 
         global $_Auth_OpenID_db_test_host;
 
@@ -726,7 +726,7 @@ class Tests_Auth_OpenID_MemcachedStore_Test extends Tests_Auth_OpenID_Store {
             $this->pass();
             return;
         }
-        require_once 'Auth/OpenID/Stores/MemcachedStore.php';
+        require_once 'Auth/OpenID/Store/MemcachedStore.php';
 
         global $_Auth_OpenID_memcache_test_host;
 
