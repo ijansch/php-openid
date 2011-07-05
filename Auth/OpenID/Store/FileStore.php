@@ -613,6 +613,23 @@ class Auth_OpenID_Store_FileStore implements Auth_OpenID_Store_OpenIDStore {
         }
         return $removed;
     }
+
+
+
+    function cleanup() {
+		return array( $this->cleanupNonces(), $this->cleanupAssociations() );
+    }
+
+
+    function	supportsCleanup(){
+    	return true;
+    }
+
+
+    function reset(){
+    	/* @todo */
+    }
+
 }
 
 
