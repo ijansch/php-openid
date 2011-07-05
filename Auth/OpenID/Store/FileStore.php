@@ -626,8 +626,10 @@ class Auth_OpenID_Store_FileStore implements Auth_OpenID_Store_OpenIDStore {
     }
 
 
+    	/**
+    	 * @todo	purging the content of the store
+    	 */
     function reset(){
-    	/* @todo */
     }
 
 }
