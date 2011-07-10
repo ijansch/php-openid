@@ -552,6 +552,16 @@ class Auth_OpenID_Store_SQLStore implements Auth_OpenID_Store_OpenIDStore {
         $this->connection->commit();
         return $num;
     }
+    
+    function cleanup()
+    {
+    }
+
+    function supportsCleanup()
+    {
+        return false;        
+    }
+    
 }
 
 
