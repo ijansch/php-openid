@@ -126,5 +126,9 @@ class Auth_OpenID_DatabaseConnection {
     function getAll($sql, $params = array())
     {
     }
+    
+    function isError($value)
+    {
+    }
 }
 

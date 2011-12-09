@@ -166,7 +166,7 @@ class Auth_OpenID_Store_SQLStore implements Auth_OpenID_Store_OpenIDStore {
      */
     function isError($value)
     {
-        return PEAR::isError($value);
+        return $this->connection->isError($value);
     }
 
     /**
