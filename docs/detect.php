@@ -368,7 +368,7 @@ function detect_stores($r, &$out)
 
     $out .= $r->p('If you are using the filesystem store, your ' .
                   'data directory must be readable and writable by ' .
-                  $web_user . ' and not availabe over the Web.');
+                  $web_user . ' and not available over the Web.');
     return true;
 }
 
@@ -455,7 +455,7 @@ function detect_fetcher($r, &$out)
             if ($url == $fetch_url) {
                 $msg = 'The redirected URL was not returned.';
             } else {
-                $msg = 'An unexpected URL was returned: <' . $url . '>.';
+                $msg = 'An unexpected URL was returned: ' . $url . '.';
             }
             $parts[] = $r->b($msg);
         }
