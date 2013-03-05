@@ -792,11 +792,16 @@ class Auth_OpenID_Extension_AX_KeyValueMessage extends Auth_OpenID_Extension_AX_
  */
 class Auth_OpenID_Extension_AX_FetchResponse extends Auth_OpenID_Extension_AX_KeyValueMessage {
     var $mode = 'fetch_response';
+    var $request = null;
 
     function Auth_OpenID_Extension_AX_FetchResponse($update_url=null)
     {
         $this->Auth_OpenID_Extension_AX_KeyValueMessage();
         $this->update_url = $update_url;
+    }
+
+    function registerRequest( $request = null ) {
+	    $this->request = $request;
     }
 
     /**
@@ -812,6 +817,10 @@ class Auth_OpenID_Extension_AX_FetchResponse extends Auth_OpenID_Extension_AX_Ke
         $aliases = new Auth_OpenID_NamespaceMap();
 
         $zero_value_types = array();
+
+        if ( is_null( $request ) && ! is_null( $this->request) ) {
+	        $request = $this->request;
+        }
 
         if ($request !== null) {
             // Validate the data in the context of the request (the
